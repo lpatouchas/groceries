@@ -1,0 +1,14 @@
+<p>This is the partial for  todo. {{hello}}</p>
+
+<input TYPE="text" ng-model="newItem" ng-list=", " ng-blur="add()" /><button value="Add" ng-click="add(newItem)">Add</button>
+<p>To Buy</p>
+<ul>
+<li ng-click="buy(item)" ng-repeat="item in toBuy">{{item.name}}, {{item.price}}</li>
+</ul>
+
+<p>Bought</p>
+<ul>
+<li ng-click="restoreItem(item)" ng-repeat="item in bought | filter:{ name: newItem }">{{item.name}}, {{item.price}}</li>
+</ul>
+
+<p>Total Price {{totalPrice()}}</p>
