@@ -8,7 +8,8 @@
 
 <p>Bought</p>
 <ul>
-<li ng-click="restoreItem(item)" ng-repeat="item in bought | filter:{ name: newItem }">{{item.name}}, {{item.price}}</li>
+<li ng-click="restoreItem(item)" ng-repeat="item in bought ">{{item.name}}, {{item.price}}</li>
+<!-- | filter:{ name: newItem } -->
 </ul>
 
 <p>Total Price {{totalPrice()}}</p>
