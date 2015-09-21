@@ -1,0 +1,22 @@
+[
+    {
+        "name": "apples", 
+        "price": 3.1 
+    },
+    {
+        "name": "oragnes", 
+        "price": 6 
+    },
+    {
+        "name": "mellon", 
+        "price": 2.2 
+    },
+    {
+        "name": "Pasta", 
+        "price": 4.2 
+    },
+    {
+        "name": "Milk", 
+        "price": 1.2 
+    }
+]

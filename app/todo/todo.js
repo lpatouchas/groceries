@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('myApp.todo', [
-		'ngRoute','mgcrea.ngStrap', 'myApp.version'
+		'ngRoute','mgcrea.ngStrap', 'myApp.version','xeditable','ngResource', 'dataService'
 	])
 
 	.config([
@@ -13,4 +13,8 @@
 			});
 		}
 	]);
+	
+	angular.module('myApp.todo').run(function(editableOptions) {
+		  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+	});
 })();

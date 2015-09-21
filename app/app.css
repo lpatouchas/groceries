@@ -1,5 +1,36 @@
-body { padding-top: 80px; }
+body { padding-top: 7em; font-size: 2em !important;}
 
 .price::after {
 	content: '€'
+}
+
+.form-control {
+	height: 2em !important;
+	font-size: 1em !important;
+}
+
+.btn {
+	font-size: 1em !important;
+}
+
+.dropdown-menu {
+	font-size: 1em !important; width: 100% !important;
+}
+
+.alert {
+	margin-bottom: 0px !important;
+}
+.form-group {
+	margin-bottom: 0px !important;
+}
+
+.row {
+	margin-right: 0px !important;
+}
+/* span {
+	border: 1px solid gray;
+} */
+
+.editable-input.editable-has-buttons {
+	width:80% !important;
 }
