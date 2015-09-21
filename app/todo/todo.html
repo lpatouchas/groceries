@@ -1,15 +1,47 @@
-<p>This is the partial for  todo. {{hello}}</p>
+<nav class="navbar navbar-default navbar-fixed-top">
+	<!-- <div class="container">
+		<span class=" col-xs-9 ">
+		<input type="text" class="form-control input-lg"  ng-model="newItem"   bs-options="item as item.name + ' ' + item.price for item  in bought" bs-typeahead placeholder="type a product"/>
+		<i class="glyphicon glyphicon-user form-control-feedback"></i>
+		</span>
+		<button type="button" class="col-xs-3 btn btn-lg btn-default" value="Add" ng-click="add()">Add</button>
+	</div> -->
+	<div class="form-group has-feedback">
+    <input type="text" class="form-control" ng-model="newItem"   bs-options="item as item.name + ' ' + item.price for item  in bought" bs-typeahead placeholder="type a product"/>
+    <i class="glyphicon glyphicon-search form-control-feedback"></i>
+    <button type="button" class="btn btn-block btn-default" value="Add" ng-click="add()">Add <span class="glyphicon glyphicon-plus"></span></button>
+	
+</div>
+</nav>
 
-<input TYPE="text" ng-model="newItem" ng-list=", " ng-blur="add()" /><button value="Add" ng-click="add(newItem)">Add</button>
-<p>To Buy</p>
-<ul>
-<li ng-click="buy(item)" ng-repeat="item in toBuy">{{item.name}}, {{item.price}}</li>
+
+<ul class="list-group">
+	<li class="list-group-item active">To Buy</li>
+	<li class="list-group-item row" href="#" ng-click="buy(item)" ng-repeat="item in toBuy">
+	<div class="col-xs-11">
+		{{item.name}}, <span class="price">{{item.price}}</span>
+	</div>
+	<div class="col-xs-1">
+		<span class="glyphicon glyphicon-edit"></span>
+	</div>
+	</li>
 </ul>
 
-<p>Bought</p>
-<ul>
-<li ng-click="restoreItem(item)" ng-repeat="item in bought ">{{item.name}}, {{item.price}}</li>
-<!-- | filter:{ name: newItem } -->
+<ul class="list-group">
+	<li class="list-group-item active">Bought</li>
+	<li class="list-group-item row" ng-click="restoreItem(item)" ng-repeat="item in bought ">
+		<div class="col-xs-11">
+			<del>
+				{{item.name}}, <span class="price">{{item.price}} 
+			</del>
+		</div>
+		<div class="col-xs-1">
+			<span class="glyphicon glyphicon-edit"></span>
+		</div>
+	</li>
+		<!-- | filter:{ name: newItem } -->
 </ul>
+<div class="alert alert alert-info" role="alert">
+	<i class="icon-search"></i>Total Price: <strong>{{totalPrice()}}€</strong>
+</div>
 
-<p>Total Price {{totalPrice()}}</p>
