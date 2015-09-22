@@ -13,7 +13,7 @@
 	
 </div>
 <div class="alert alert alert-info" role="alert">
-	<i class="icon-search"></i>Total Price: <span class="price"><strong>{{totalPrice()}}</strong></span> for <strong>{{toBuy.length}}</strong> items.
+	<i class="icon-search"></i>Total Price:<price value="{{totalPrice()}}"/></strong></span> for <strong>{{toBuy.length}}</strong> items.
 </div>
 </nav>
 
@@ -21,28 +21,13 @@
 <ul class="list-group">
 	<li class="list-group-item active">To Buy</li>
 	<li class="list-group-item row" href="#" ng-repeat="item in toBuy">
-	<div class="col-xs-8">
-		<a href="#" editable-text="item.name">{{item.name || "empty"}}</a>, 
-		<span class="price">
-		<a href="#" editable-number="item.price" e-step="any">{{item.price || "empty"}}</a></span>
-	</div>
-	<div class="col-xs-4" style="text-align:center;" ng-click="buy(item)">
-		<span class="glyphicon glyphicon-ok"></span>
-	</div>
+	<product item="item" ng-click="buy(item)"></product>
 	</li>
 </ul>
 
 <ul class="list-group">
 	<li class="list-group-item active">Bought</li>
 	<li class="list-group-item row" ng-repeat="item in bought ">
-		<div class="col-xs-8">
-			<del>
-				{{item.name}}, <span class="price">{{item.price}} 
-			</del>
-		</div>
-		<div class="col-xs-4"  style="text-align:center;" ng-click="restoreItem(item)">
-			<span class="glyphicon glyphicon-repeat" ng-click="restoreItem(item)"></span>
-		</div>
+		<product item="item" bought="true" ng-click="restoreItem(item)"></product>
 	</li>
-		<!-- | filter:{ name: newItem } -->
 </ul>

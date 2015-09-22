@@ -7,12 +7,8 @@
 
 	function todoCtrl($scope, $routeParams, $http, DataService) {
 
-		$scope.toBuy = $http.get('todo/data/bought.json').success(function(data) {
-			$scope.toBuy = data;
-		});
-
-		var b = DataService.getData();
-
+		$scope.toBuy = DataService.getData();
+		
 		$scope.bought = [
 			product('cucumbers', parseFloat('1.5'))
 		];

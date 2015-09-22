@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('myApp.todo', [
-		'ngRoute','mgcrea.ngStrap', 'myApp.version','xeditable','ngResource', 'dataService'
+		'ngRoute','mgcrea.ngStrap', 'myApp.version','xeditable','ngResource'
 	])
 
 	.config([
