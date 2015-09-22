@@ -22,13 +22,13 @@
 <div class="list-group">
 	<div class="list-group-item active">To Buy</div>
 	<div class="list-group-item" href="#" ng-repeat="item in toBuy | filter:newProductName">
-	<product item="item" ng-click="buy(item)"></product>
+	<product item="item" buy="buy(item)"></product>
 	</div>
 </div>
 <div class="list-group">
 	<div class="list-group-item active">Bought</div>
 	<div class="list-group-item row" ng-repeat="item in bought | filter:newProductName">
-	<product item="item" bought="true" query="query" ng-click="restoreItem(item)"></product>
+	<product item="item" bought="true" query="query" restore-item="restoreItem(item)"></product>
 	</div>
 </div>
 

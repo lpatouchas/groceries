@@ -13,11 +13,12 @@
 	
 	angular.module('myApp.todo').directive('product', function() {
 		return {
-			restrict: 'AE',
+			restrict: 'E',
 			scope: {
 				item: '=',
 				bought: '@bought',
-				ngClick: '&'
+				buy: '&',
+				restoreItem: '&'
 			},
 			templateUrl : 'todo/product.html'
 		};
