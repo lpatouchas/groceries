@@ -19,7 +19,7 @@
 			if ($scope.newProductName != '' && $scope.newProductName != 'undefined') {
 				var found = false;
 				angular.forEach($scope.bought.concat($scope.toBuy), function(item, index) {
-					if (item.name == $scope.newProductName) {
+					if (item.name.toLowerCase() == $scope.newProductName.toLowerCase()) {
 						found = true;
 						if (item.price == $scope.newProductPrice){
 							$scope.restoreItem(item);

@@ -44,6 +44,27 @@ body { padding-top: 7em; font-size: 2em !important;}
 	width:80% !important;
 }
 
+
+      div.special > div[class*="col-"] {
+       padding: 0; 
+      }
+      @media (max-width: 979px) {
+
+        /* Remove any padding from the body */
+        body {
+          padding-top: 0;
+        }
+      }
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
 /* .list-group-item {
 	padding: 10px !important;
 } */
