@@ -1,0 +1,12 @@
+<ul class="list-group">
+	<li class="list-group-item active">To Buy</li>
+	<li class="list-group-item row" href="#" ng-repeat="item in toBuy">
+		<div class="col-xs-8">
+		<a href="#" editable-text="item.name">{{item.name || "empty"}}</a>, <a href="#" editable-number="item.price" e-step="any"><price
+				value="{{item.price || 0}}" /></a>
+	</div>
+	<div class="col-xs-4" style="text-align: center;" ng-click="buy(item)">
+		<span class="glyphicon glyphicon-ok"></span>
+	</div>
+	</li>
+</ul>

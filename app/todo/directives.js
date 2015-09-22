@@ -18,10 +18,17 @@
 				item: '=',
 				bought: '@bought',
 				ngClick: '&'
-//				restoreItem: '&',
-//				buy: '&'
 			},
 			templateUrl : 'todo/product.html'
+		};
+	});
+	
+	angular.module('myApp.todo').directive('productList', function() {
+		return {
+			scope: {
+				toBuy: '=',
+			},
+			templateUrl : 'todo/productList.html'
 		};
 	});
 	

@@ -1,22 +1,27 @@
 [
     {
         "name": "apples", 
-        "price": 3.1 
+        "price": 3.1,
+        "bought": false
     },
     {
         "name": "oragnes", 
-        "price": 6 
+        "price": 6,
+        "bought": false
     },
     {
         "name": "mellon", 
-        "price": 2.2 
+        "price": 2.2,
+        "bought": false
     },
     {
         "name": "Pasta", 
-        "price": 4.2 
+        "price": 4.2,
+        "bought": false 
     },
     {
         "name": "Milk", 
-        "price": 1.2 
+        "price": 1.2,
+        "bought": false 
     }
 ]

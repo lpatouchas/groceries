@@ -1,4 +1,4 @@
-<div ng-if="!bought">
+<div class="row" ng-if="!bought">
 	<div class="col-xs-8">
 		<a href="#" editable-text="item.name">{{item.name || "empty"}}</a>, <a href="#" editable-number="item.price" e-step="any"><price
 				value="{{item.price || 0}}" /></a>
@@ -7,7 +7,7 @@
 		<span class="glyphicon glyphicon-ok"></span>
 	</div>
 </div>
-<div ng-if="bought">
+<div class="row" ng-if="bought">
 	<div class="col-xs-8">
 		<del>
 			{{item.name}},

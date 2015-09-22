@@ -1,5 +1,9 @@
 body { padding-top: 7em; font-size: 2em !important;}
 
+.price {
+	font-weight: bold;
+}
+
 .price::after {
 	content: '€'
 }
@@ -7,6 +11,11 @@ body { padding-top: 7em; font-size: 2em !important;}
 .form-control {
 	height: 2em !important;
 	font-size: 1em !important;
+}
+
+.form-control-feedback {
+	padding-right: 2.2em;
+	padding-top: .1em;
 }
 
 .btn {
@@ -34,3 +43,7 @@ body { padding-top: 7em; font-size: 2em !important;}
 .editable-input.editable-has-buttons {
 	width:80% !important;
 }
+
+/* .list-group-item {
+	padding: 10px !important;
+} */

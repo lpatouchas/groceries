@@ -2,19 +2,75 @@
 	'use strict';
 
 	angular.module('myApp.todo').controller('TodoCtrl', [
-		'$scope', '$routeParams', '$http', 'DataService', todoCtrl
+		'$scope', '$routeParams', '$http', '$ngBootbox', 'DataService', todoCtrl
 	]);
 
-	function todoCtrl($scope, $routeParams, $http, DataService) {
+	function todoCtrl($scope, $routeParams, $http, $ngBootbox, DataService) {
+
+		
 
 		$scope.toBuy = DataService.getData();
-		
+
 		$scope.bought = [
-			product('cucumbers', parseFloat('1.5'))
+			product('cucumbers', parseFloat('1.5'), true)
 		];
+		
+		$scope.add = function() {
+			if ($scope.newProductName != '' && $scope.newProductName != 'undefined') {
+				var found = false;
+				angular.forEach($scope.bought.concat($scope.toBuy), function(item, index) {
+					if (item.name == $scope.newProductName) {
+						found = true;
+						if (item.price == $scope.newProductPrice){
+							$scope.restoreItem(item);
+						} else {
+							var options = {
+								message : 'It seems that the product you are trying to add alreay exists but with different price. Would you like to keep the old price: <span class="price">'+item.price+'</span>, or the new price: <span class="price">'+$scope.newProductPrice+'</span>',
+								title : 'Price Difference',
+								className : 'test-class',
+								buttons : {
+									warning : {
+										label : "Old",
+										className : "btn-default",
+										callback : function() {
+											if (item.bought){
+												$scope.restoreItem(item);
+											}
+											restoreInput();
+											$scope.$apply();
+										}
+									},
+									success : {
+										label : "New",
+										className : "btn-primary",
+										callback : function() {
+											item.price = $scope.newProductPrice;
+											if (item.bought){
+												$scope.restoreItem(item);
+											} 
+											restoreInput();
+											$scope.$apply();
+										}
+									}
+								}
+							};
+
+							$ngBootbox.customDialog(options);
+						}
+					}
+				});
+				
+				if (!found){
+					$scope.toBuy.push(new product($scope.newProductName, $scope.newProductPrice));
+					restoreInput();
+				}
+				
+			}
+		}
 
 		$scope.buy = function(item) {
 			$scope.toBuy.splice($scope.toBuy.indexOf(item), 1);
+			item.bought = true;
 			$scope.bought.push(item);
 
 		}
@@ -22,37 +78,8 @@
 		$scope.restoreItem = function(item) {
 			$scope.bought.splice($scope.bought.indexOf(item), 1);
 			$scope.toBuy.push(item);
-		}
-
-		$scope.add2 = function(something) {
-			console.log(something);
-		}
-
-		$scope.add = function() {
-			if ($scope.newItem != '' && $scope.newItem != 'undefined') {
-
-				//mobile fix
-				angular.forEach($scope.bought, function(item, index) {
-					if (item.name == $scope.newItem) {
-						$scope.newItem = item;
-					}
-				})
-
-				if ($scope.newItem.name) {
-					$scope.bought.splice($scope.bought.indexOf($scope.newItem), 1);
-					$scope.toBuy.push($scope.newItem);
-					$scope.newItem = "";
-				} else {
-					var newProduct = $scope.newItem.split(",")
-					var name = newProduct[0];
-					var s = newProduct[1];
-					var price = parseFloat(s);
-					if (newProduct) {
-						$scope.toBuy.push(new product(name, price));
-						$scope.newItem = "";
-					}
-				}
-			}
+			item.bought = false;
+			restoreInput();
 		}
 
 		$scope.totalPrice = function calculatePrice() {
@@ -66,12 +93,17 @@
 			return Math.round(total * 100) / 100;
 		}
 
-		function product(name, price) {
+		function product(name, price, bought) {
 			return {
 				name : name,
-				price : price
+				price : price,
+				bought: bought
 			}
 		}
-
+		
+		function restoreInput(){
+			$scope.newProductPrice = '';
+			$scope.newProductName = '';
+		}
 	}
 })();
