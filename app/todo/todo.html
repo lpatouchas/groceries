@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 <div>
     <!-- <input type="text" class="form-control" ng-model="newItem"   bs-options="item as item.name for item  in bought" bs-typeahead placeholder="type a product"/> -->
-    <div class="row no-gutters">
+    <div class="row  no-gutters">
 		    <div class="col-xs-8">
 				    <input type="text" class="form-control" ng-model="newProductName" placeholder="search/add product"/>
 				    <i class="glyphicon glyphicon-search form-control-feedback"></i> 
@@ -28,7 +28,7 @@
 <div class="list-group">
 	<div class="list-group-item active">Bought</div>
 	<div class="list-group-item repeated-item" ng-repeat="item in bought | filter:newProductName">
-	<product item="item" bought="true" query="query" restore-item="restoreItem(item)"></product>
+	<product item="item" bought="true" query="query" remove="remove(item)" restore="restore(item)"></product>
 	</div>
 </div>
 

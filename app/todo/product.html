@@ -4,14 +4,9 @@
 				value="{{item.price || 0}}" /></a>
 	</div>
 	
-	<div class="col-xs-2" style="text-align: center;" >
-		<button type="button" class="btn btn-primary" ng-click="buy(item)" aria-label="Left Align">
+	<div class="col-xs-4" style="text-align: center;" >
+		<button type="button" class="btn btn-primary full-width" ng-click="buy(item)" aria-label="Left Align">
 	  		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-		</button>
-	</div>
-	<div class="col-xs-2" style="text-align: center;" >
-		<button type="button" class="btn btn-danger"  aria-label="Left Align">
-	  		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 		</button>
 	</div>
 </div>
@@ -22,7 +17,14 @@
 			<price value="{{item.price}}" />
 		</del>
 	</div>
-	<div class="col-xs-4" style="text-align: center;" ng-click="restoreItem(item)">
-		<span class="glyphicon glyphicon-repeat"></span>
+	<div class="col-xs-2" style="text-align: center;" >
+		<button type="button" class="btn btn-danger full-width" ng-click="remove(item)"  aria-label="Left Align">
+	  		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+		</button>
+	</div>
+	<div class="col-xs-2" style="text-align: center;">
+		<button type="button" class="btn btn-primary full-width" ng-click="restore(item)"  aria-label="Left Align">
+	  		<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+		</button>
 	</div>
 </div>

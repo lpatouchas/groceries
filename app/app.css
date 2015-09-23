@@ -41,11 +41,28 @@ body {
 .row {
 	margin-right: 0px !important;
 }
+
+.full-width {
+	width: 100%;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
 /* span {
 	border: 1px solid gray;
 } */
 .editable-input.editable-has-buttons {
 	width: 80% !important;
+}
+div[class*=" editable-"] {
+	color: red;
+}
+
+.editable-controls {
+	z-index: auto;
 }
 
 div.special>div[class*="col-"] {

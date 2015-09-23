@@ -1,0 +1,27 @@
+[
+    {
+        "name": "apples", 
+        "price": 3.1,
+        "bought": false
+    },
+    {
+        "name": "oragnes", 
+        "price": 6,
+        "bought": false
+    },
+    {
+        "name": "mellon", 
+        "price": 2.2,
+        "bought": false
+    },
+    {
+        "name": "Pasta", 
+        "price": 4.2,
+        "bought": false 
+    },
+    {
+        "name": "Milk", 
+        "price": 1.2,
+        "bought": false 
+    }
+]

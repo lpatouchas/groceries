@@ -18,7 +18,8 @@
 				item: '=',
 				bought: '@bought',
 				buy: '&',
-				restoreItem: '&'
+				restore: '&',
+				remove: '&'
 			},
 			templateUrl : 'todo/product.html'
 		};
