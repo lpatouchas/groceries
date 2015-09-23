@@ -1,13 +1,21 @@
-<div class="row" ng-if="!bought">
+<div class="row animate-repeat" ng-if="!bought">
 	<div class="col-xs-8">
 		<a href="#" editable-text="item.name">{{item.name || "empty"}}</a>, <a href="#" editable-number="item.price" e-step="any"><price
 				value="{{item.price || 0}}" /></a>
 	</div>
-	<div class="col-xs-4" style="text-align: center;" ng-click="buy(item)">
-		<span class="glyphicon glyphicon-ok"></span>
+	
+	<div class="col-xs-2" style="text-align: center;" >
+		<button type="button" class="btn btn-primary" ng-click="buy(item)" aria-label="Left Align">
+	  		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+		</button>
+	</div>
+	<div class="col-xs-2" style="text-align: center;" >
+		<button type="button" class="btn btn-danger"  aria-label="Left Align">
+	  		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+		</button>
 	</div>
 </div>
-<div class="row" ng-if="bought">
+<div class="row nga-default nga-stagger nga-collapse" ng-if="bought">
 	<div class="col-xs-8">
 		<del>
 			{{item.name}},

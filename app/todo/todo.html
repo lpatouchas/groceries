@@ -3,11 +3,11 @@
     <!-- <input type="text" class="form-control" ng-model="newItem"   bs-options="item as item.name for item  in bought" bs-typeahead placeholder="type a product"/> -->
     <div class="row no-gutters">
 		    <div class="col-xs-8">
-				    <input type="text" class="form-control" ng-model="newProductName" placeholder="search or add a product name"/>
+				    <input type="text" class="form-control" ng-model="newProductName" placeholder="search/add product"/>
 				    <i class="glyphicon glyphicon-search form-control-feedback"></i> 
 		    </div>
 		    <div class="col-xs-4">
-				    <input type="number" class="form-control" ng-model="newProductPrice" placeholder="type a price"/> 
+				    <input type="number" class="form-control" ng-model="newProductPrice" placeholder="price"/> 
 				    <i class="glyphicon glyphicon-euro form-control-feedback"></i> 
 		    </div>
     </div>
@@ -21,13 +21,13 @@
 
 <div class="list-group">
 	<div class="list-group-item active">To Buy</div>
-	<div class="list-group-item" href="#" ng-repeat="item in toBuy | filter:newProductName">
+	<div class="list-group-item repeated-item" href="#" ng-repeat="item in toBuy | filter:newProductName">
 	<product item="item" buy="buy(item)"></product>
 	</div>
 </div>
 <div class="list-group">
 	<div class="list-group-item active">Bought</div>
-	<div class="list-group-item row" ng-repeat="item in bought | filter:newProductName">
+	<div class="list-group-item repeated-item" ng-repeat="item in bought | filter:newProductName">
 	<product item="item" bought="true" query="query" restore-item="restoreItem(item)"></product>
 	</div>
 </div>
