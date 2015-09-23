@@ -2,10 +2,10 @@
 	'use strict';
 
 	angular.module('myApp.todo').controller('TodoCtrl', [
-		'$scope', '$routeParams', '$http', 'DataService', 'ActionsService', todoCtrl
+		'$scope', 'DataService', 'ActionsService', todoCtrl
 	]);
 
-	function todoCtrl($scope, $routeParams, $http, DataService, ActionsService) {
+	function todoCtrl($scope, DataService, ActionsService) {
 
 		$scope.toBuy = DataService.toBuy.getData();
 
@@ -18,7 +18,6 @@
 
 		$scope.buy = function(item) {
 			ActionsService.buy($scope.toBuy, $scope.bought, item);
-			$scope.$apply();
 		}
 
 		$scope.remove = function(item) {
