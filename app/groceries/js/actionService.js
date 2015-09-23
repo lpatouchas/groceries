@@ -1,6 +1,6 @@
 (function() {
 	'use strict';
-	angular.module('myApp.todo').factory('ActionsService', [
+	angular.module('groceriesApp').factory('ActionsService', [
 		'$ngBootbox', actionService
 	]);
 

@@ -20,15 +20,19 @@
 </nav>
 
 <div class="list-group">
-	<div class="list-group-item active">To Buy</div>
-	<div class="list-group-item repeated-item" href="#" ng-repeat="item in toBuy | filter:newProductName">
-	<product item="item" buy="buy(item)"></product>
+	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy">To Buy</div>
+	<div id="toBuy" class="collapse in">
+		<div class="list-group-item repeated-item" href="#" ng-repeat="item in toBuy | filter:newProductName">
+		<product item="item" buy="buy(item)"></product>
+		</div>
 	</div>
 </div>
 <div class="list-group">
-	<div class="list-group-item active">Bought</div>
-	<div class="list-group-item repeated-item" ng-repeat="item in bought | filter:newProductName">
-	<product item="item" bought="true" query="query" remove="remove(item)" restore="restore(item)"></product>
+	<div class="list-group-item active" data-toggle="collapse" data-target="#bought">Bought</div>
+	<div id="bought" class="collapse in">
+		<div class="list-group-item repeated-item" ng-repeat="item in bought | filter:newProductName">
+		<product item="item" bought="true" query="query" remove="remove(item)" restore="restore(item)"></product>
+		</div>
 	</div>
 </div>
 

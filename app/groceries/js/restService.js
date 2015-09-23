@@ -1,10 +1,10 @@
 (function() {
 	'use strict';
-	angular.module('myApp.todo').factory('DataService', [
+	angular.module('groceriesApp').factory('DataService', [
 		'$resource', function($resource) {
 
 			return {
-				toBuy : $resource('todo/data/toBuy.json', {}, {
+				toBuy : $resource('groceries/data/toBuy.json', {}, {
 					getData : {
 						method : 'GET',
 						params : {},
@@ -12,7 +12,7 @@
 					}
 				}),
 
-				bought : $resource('todo/data/bought.json', {}, {
+				bought : $resource('groceries/data/bought.json', {}, {
 					getData : {
 						method : 'GET',
 						params : {},

@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('myApp.todo').controller('TodoCtrl', [
+	angular.module('groceriesApp').controller('GroceriesAppCtrl', [
 		'$scope', 'DataService', 'ActionsService', todoCtrl
 	]);
 
