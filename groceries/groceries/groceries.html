@@ -1,4 +1,8 @@
+
 <nav class="navbar navbar-default navbar-fixed-top">
+<div class="alert alert alert-info" role="alert">
+	Total Price:<price value="{{totalPrice()}}"/></strong></span> for <strong>{{toBuy.length}}</strong> items.
+</div>
 <div>
     <!-- <input type="text" class="form-control" ng-model="newItem"   bs-options="item as item.name for item  in bought" bs-typeahead placeholder="type a product"/> -->
     <div class="row  no-gutters">
@@ -13,9 +17,6 @@
     </div>
     <button type="button" class="btn btn-block btn-default" value="Add" ng-click="add()">Add <span class="glyphicon glyphicon-plus"></span></button>
 	
-</div>
-<div class="alert alert alert-info" role="alert">
-	<i class="icon-search"></i>Total Price:<price value="{{totalPrice()}}"/></strong></span> for <strong>{{toBuy.length}}</strong> items.
 </div>
 </nav>
 

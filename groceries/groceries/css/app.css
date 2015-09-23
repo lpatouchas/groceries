@@ -1,6 +1,14 @@
 body {
-	padding-top: 7.1em;
+	padding-top: 6.6em;
 	font-size: 2em !important;
+}
+
+.navbar {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+
+    /* the rest of your styling */
 }
 
 .price {
@@ -14,6 +22,11 @@ body {
 .form-control {
 	height: 2em !important;
 	font-size: 1em !important;
+}
+
+.small-padding {
+	padding-right: 0.1em !important;
+    padding-left: 0.1em !important;
 }
 
 .form-control-feedback {
@@ -32,6 +45,7 @@ body {
 
 .alert {
 	margin-bottom: 0px !important;
+	padding: 8px !important;;
 }
 
 .form-group {

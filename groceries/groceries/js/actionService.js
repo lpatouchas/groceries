@@ -11,7 +11,7 @@
 		 */
 
 		var add = function(newProductName, newProductPrice, toBuy, bought, scope) {
-			if (!(typeof newProductName === 'undefined')) {
+			if (!(typeof newProductName === 'undefined' || typeof newProductPrice === 'undefined')) {
 				var found = false;
 				angular.forEach(bought.concat(toBuy), function(item, index) {
 					if (item.name.toLowerCase() == newProductName.toLowerCase()) {
@@ -28,6 +28,8 @@
 					toBuy.push(new product(newProductName, newProductPrice));
 				}
 
+			} else {
+				$ngBootbox.alert('Please add a both Product name & price!');
 			}
 
 		};

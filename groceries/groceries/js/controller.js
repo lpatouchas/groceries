@@ -18,14 +18,17 @@
 
 		$scope.buy = function(item) {
 			ActionsService.buy($scope.toBuy, $scope.bought, item);
+			restoreInput();
 		}
 
 		$scope.remove = function(item) {
 			ActionsService.remove($scope.bought, item);
+			restoreInput();
 		}
 
 		$scope.restore = function(item) {
 			ActionsService.restore($scope.toBuy, $scope.bought, item);
+			restoreInput();
 		}
 
 		$scope.totalPrice = function() {
@@ -33,8 +36,8 @@
 		}
 
 		function restoreInput() {
-			$scope.newProductPrice = '';
-			$scope.newProductName = '';
+			delete $scope.newProductPrice;
+			delete $scope.newProductName;
 		}
 	}
 })();
