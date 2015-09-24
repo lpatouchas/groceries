@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
 <div class="alert alert alert-info" role="alert">
-	Total Price:<price value="{{totalPrice()}}"/></strong></span> for <strong>{{toBuy.length}}</strong> items.
+	Total Price:<price value="{{totalPrice()}}"/></strong></span> for <strong>{{( products | filter:{checked:false} ).length}}</strong> items.
 </div>
 <div>
     <!-- <input type="text" class="form-control" ng-model="newItem"   bs-options="item as item.name for item  in bought" bs-typeahead placeholder="type a product"/> -->
