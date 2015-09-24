@@ -24,7 +24,7 @@
 	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy">To Buy</div>
 	<div id="toBuy" class="collapse in">
 		<div class="list-group-item repeated-item" href="#" ng-repeat="item in products | filter:newProductName | filter:{checked:false}">
-		<product item="item" buy="buy(item)"></product>
+		<product item="item" check="check(item)"></product>
 		</div>
 	</div>
 </div>

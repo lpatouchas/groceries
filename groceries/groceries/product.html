@@ -1,28 +1,31 @@
-<div class="row animate-repeat" ng-if="!checked">
+<!-- <div class="row animate-repeat" ng-if="!checked">
 	<div class="col-xs-8">
 		<a href="#" editable-text="item.name">{{item.name || "empty"}}</a>, <a href="#" editable-number="item.price" e-step="any"><price
 				value="{{item.price || 0}}" /></a>
 	</div>
 	
 	<div class="col-xs-4 small-padding" style="text-align: center;" >
-		<button type="button" class="btn btn-primary full-width" ng-click="buy(item)" aria-label="Left Align">
+		<button type="button" class="btn btn-primary full-width" ng-click="check(item)" aria-label="Left Align">
 	  		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		</button>
 	</div>
-</div>
-<div class="row nga-default nga-stagger nga-collapse" ng-if="checked">
-	<div class="col-xs-8">
-		<del>
+</div> -->
+<div class="row animate-repeat">
+	<div class="col-xs-8" ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}">
 			{{item.name}},
 			<price value="{{item.price}}" />
-		</del>
 	</div>
-	<div class="col-xs-2 small-padding" style="text-align: center;" >
+	<div class="col-xs-4 small-padding" style="text-align: center;" ng-show="!item.checked">
+		<button type="button" class="btn btn-primary full-width" ng-click="check(item)" aria-label="Left Align">
+	  		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+		</button>
+	</div>
+	<div class="col-xs-2 small-padding" style="text-align: center;" ng-show="item.checked">
 		<button type="button" class="btn btn-danger full-width" ng-click="remove(item)"  aria-label="Left Align">
 	  		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 		</button>
 	</div>
-	<div class="col-xs-2 small-padding" style="text-align: center;">
+	<div class="col-xs-2 small-padding" style="text-align: center;" ng-show="item.checked">
 		<button type="button" class="btn btn-primary full-width" ng-click="restore(item)"  aria-label="Left Align">
 	  		<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
 		</button>

@@ -19,6 +19,14 @@ body {
 	content: '€'
 }
 
+.checked-product {
+	text-decoration: line-through;
+}
+
+.unchecked-product {
+	color: #428bca;
+}
+
 .form-control {
 	height: 2em !important;
 	font-size: 1em !important;

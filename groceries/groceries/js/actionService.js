@@ -31,7 +31,7 @@
 
 		};
 
-		var buy = function(item) {
+		var check = function(item) {
 			item.checked = true;
 		}
 
@@ -72,7 +72,7 @@
 		 */
 		return {
 			add : add,
-			buy : buy,
+			check : check,
 			remove : remove,
 			restore : restore,
 			calculateTotalPrice : calculateTotalPrice

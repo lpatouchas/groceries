@@ -15,8 +15,8 @@
 			restoreInput();
 		}
 
-		$scope.buy = function(item) {
-			ActionsService.buy(item);
+		$scope.check = function(item) {
+			ActionsService.check(item);
 			restoreInput();
 		}
 

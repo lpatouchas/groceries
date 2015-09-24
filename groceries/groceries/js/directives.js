@@ -18,7 +18,7 @@
 			scope: {
 				item: '=',
 				checked: '@checked',
-				buy: '&',
+				check: '&',
 				restore: '&',
 				remove: '&'
 			},
