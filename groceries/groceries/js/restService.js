@@ -4,15 +4,7 @@
 		'$resource', function($resource) {
 
 			return {
-				toBuy : $resource('groceries/data/toBuy.json', {}, {
-					getData : {
-						method : 'GET',
-						params : {},
-						isArray : true
-					}
-				}),
-
-				bought : $resource('groceries/data/bought.json', {}, {
+				products : $resource('groceries/data/products.json', {}, {
 					getData : {
 						method : 'GET',
 						params : {},

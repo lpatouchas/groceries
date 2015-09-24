@@ -17,7 +17,7 @@
 			restrict: 'E',
 			scope: {
 				item: '=',
-				bought: '@bought',
+				checked: '@checked',
 				buy: '&',
 				restore: '&',
 				remove: '&'

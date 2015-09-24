@@ -10,22 +10,19 @@
 		 * Public methods  
 		 */
 
-		var add = function(newProductName, newProductPrice, toBuy, bought, scope) {
+		var add = function(newProductName, newProductPrice, products) {
 			if (!(typeof newProductName === 'undefined' || typeof newProductPrice === 'undefined')) {
 				var found = false;
-				angular.forEach(bought.concat(toBuy), function(item, index) {
+				angular.forEach(products, function(item, index) {
 					if (item.name.toLowerCase() == newProductName.toLowerCase()) {
 						found = true;
-						if (item.price == newProductPrice) {
-							restore(toBuy, bought, item);
-						} else {
-							managePriceDifference(item, newProductPrice, toBuy, bought, scope)
-						}
+						item.price = newProductPrice
+						restore(item);
 					}
 				});
 
 				if (!found) {
-					toBuy.push(new product(newProductName, newProductPrice));
+					products.push(new product(newProductName, newProductPrice, false));
 				}
 
 			} else {
@@ -34,27 +31,23 @@
 
 		};
 
-		var buy = function(toBuy, bought, item) {
-			toBuy.splice(toBuy.indexOf(item), 1);
-			item.bought = true;
-			bought.push(item);
+		var buy = function(item) {
+			item.checked = true;
 		}
 
-		var restore = function(toBuy, bought, item) {
-			bought.splice(bought.indexOf(item), 1);
-			toBuy.push(item);
-			item.bought = false;
+		var restore = function(item) {
+			item.checked = false;
+		} 
+
+		var remove = function(products, item) {
+			products.splice(products.indexOf(item), 1);
+			return products;
 		}
 
-		var remove = function(bought, item) {
-			bought.splice(bought.indexOf(item), 1);
-			return bought;
-		}
-
-		var calculateTotalPrice = function(toBuy) {
+		var calculateTotalPrice = function(products) {
 			var total = 0;
-			angular.forEach(toBuy, function(value, key) {
-				if (!isNaN(value.price)) {
+			angular.forEach(products, function(value, key) {
+				if (!value.checked && !isNaN(value.price)) {
 					total += value.price;
 				}
 
@@ -66,46 +59,11 @@
 		 * Private methods
 		 */
 
-		function managePriceDifference(item, newProductPrice, toBuy, bought, scope) {
-			var $scope = scope;
-			var options = {
-				message : 'It seems that the product you are trying to add alreay exists but with different price. Would you like to keep the old price: <span class="price">'
-								+ item.price + '</span>, or the new price: <span class="price">' + newProductPrice + '</span>',
-				title : 'Price Difference',
-				className : 'test-class',
-				buttons : {
-					warning : {
-						label : "Old",
-						className : "btn-default",
-						callback : function() {
-							if (item.bought) {
-								restore(toBuy, bought, item);
-							}
-							$scope.$apply();
-						}
-					},
-					success : {
-						label : "New",
-						className : "btn-primary",
-						callback : function() {
-							item.price = newProductPrice;
-							if (item.bought) {
-								restore(toBuy, bought, item);
-							}
-							$scope.$apply();
-						}
-					}
-				}
-			};
-
-			$ngBootbox.customDialog(options);
-		}
-
-		function product(name, price, bought) {
+		function product(name, price, checked) {
 			return {
 				name : name,
 				price : price,
-				bought : bought
+				checked : checked
 			}
 		}
 

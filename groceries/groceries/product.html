@@ -1,4 +1,4 @@
-<div class="row animate-repeat" ng-if="!bought">
+<div class="row animate-repeat" ng-if="!checked">
 	<div class="col-xs-8">
 		<a href="#" editable-text="item.name">{{item.name || "empty"}}</a>, <a href="#" editable-number="item.price" e-step="any"><price
 				value="{{item.price || 0}}" /></a>
@@ -10,7 +10,7 @@
 		</button>
 	</div>
 </div>
-<div class="row nga-default nga-stagger nga-collapse" ng-if="bought">
+<div class="row nga-default nga-stagger nga-collapse" ng-if="checked">
 	<div class="col-xs-8">
 		<del>
 			{{item.name}},

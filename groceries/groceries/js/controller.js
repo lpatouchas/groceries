@@ -7,32 +7,31 @@
 
 	function todoCtrl($scope, DataService, ActionsService) {
 
-		$scope.toBuy = DataService.toBuy.getData();
+		$scope.products = DataService.products.getData();
 
-		$scope.bought = DataService.bought.getData();
 
 		$scope.add = function() {
-			ActionsService.add($scope.newProductName, $scope.newProductPrice, $scope.toBuy, $scope.bought, $scope);
+			ActionsService.add($scope.newProductName,$scope.newProductPrice, $scope.products);
 			restoreInput();
 		}
 
 		$scope.buy = function(item) {
-			ActionsService.buy($scope.toBuy, $scope.bought, item);
+			ActionsService.buy(item);
 			restoreInput();
 		}
 
 		$scope.remove = function(item) {
-			ActionsService.remove($scope.bought, item);
+			ActionsService.remove($scope.products, item);
 			restoreInput();
 		}
 
 		$scope.restore = function(item) {
-			ActionsService.restore($scope.toBuy, $scope.bought, item);
+			ActionsService.restore(item);
 			restoreInput();
 		}
 
 		$scope.totalPrice = function() {
-			return ActionsService.calculateTotalPrice($scope.toBuy);
+			return ActionsService.calculateTotalPrice($scope.products);
 		}
 
 		function restoreInput() {
