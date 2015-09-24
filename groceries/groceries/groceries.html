@@ -28,7 +28,7 @@
 		</div>
 	</div>
 </div>
-<div class="list-group">
+<div class="list-group" ng-show="( products | filter:{checked:true} ).length > 0">
 	<div class="list-group-item active" data-toggle="collapse" data-target="#bought">Bought</div>
 	<div id="bought" class="collapse in">
 		<div class="list-group-item repeated-item" ng-repeat="item in products | filter:newProductName | filter:{checked:true}">
