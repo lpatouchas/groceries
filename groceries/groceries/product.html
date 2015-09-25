@@ -15,19 +15,21 @@
 			{{item.name}},
 			<price value="{{item.price}}" />
 	</div>
-	<div class="col-xs-4 small-padding" style="text-align: center;" ng-show="!item.checked">
+	<div class="col-xs-4 small-padding" style="text-align: center;" ng-if="!item.checked">
 		<button type="button" class="btn btn-primary full-width" ng-click="check(item)" aria-label="Left Align">
 	  		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		</button>
 	</div>
-	<div class="col-xs-2 small-padding" style="text-align: center;" ng-show="item.checked">
-		<button type="button" class="btn btn-danger full-width" ng-click="remove(item)"  aria-label="Left Align">
-	  		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-		</button>
-	</div>
-	<div class="col-xs-2 small-padding" style="text-align: center;" ng-show="item.checked">
-		<button type="button" class="btn btn-primary full-width" ng-click="restore(item)"  aria-label="Left Align">
-	  		<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-		</button>
+	<div ng-if="item.checked">
+		<div class="col-xs-2 small-padding" style="text-align: center;">
+			<button type="button" class="btn btn-danger full-width" ng-click="remove(item)"  aria-label="Left Align">
+		  		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+			</button>
+		</div>
+		<div class="col-xs-2 small-padding" style="text-align: center;">
+			<button type="button" class="btn btn-primary full-width" ng-click="restore(item)"  aria-label="Left Align">
+		  		<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+			</button>
+		</div>
 	</div>
 </div>

@@ -3,14 +3,9 @@
 	angular.module('groceriesApp').factory('DataService', [
 		'$resource', function($resource) {
 
+			var products = $resource('groceries/data/products.json');
 			return {
-				products : $resource('groceries/data/products.json', {}, {
-					getData : {
-						method : 'GET',
-						params : {},
-						isArray : true
-					}
-				})
+				getProducts : products.query
 			};
 		}
 	]);
