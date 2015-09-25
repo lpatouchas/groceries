@@ -1,14 +1,22 @@
 (function() {
 	'use strict';
 	angular.module('groceriesApp').factory('ActionsService', [
-		'$ngBootbox', actionService
+		'$ngBootbox','DataService', actionService
 	]);
 
-	function actionService($ngBootbox) {
-
+	function actionService($ngBootbox, DataService) {
+		
 		/*
 		 * Public methods  
 		 */
+		var get = function(){
+			return DataService.getProducts().$promise.then(function(data) {
+				return data;
+			}, function(error) {
+				alertError(error);
+			})['finally'](function() {
+			});
+		}
 
 		var add = function(newProductName, newProductPrice, products) {
 			if (!(typeof newProductName === 'undefined' || typeof newProductPrice === 'undefined')) {
@@ -22,7 +30,14 @@
 				});
 
 				if (!found) {
-					products.push(new product(newProductName, newProductPrice, false));
+					DataService.saveProduct(new product('',newProductName, newProductPrice, false)).$promise.then(function(data) {
+						products.push(data);
+					}, function(error) {
+						alertError(error);
+					})['finally'](function() {
+						// TODO here I should stop the window mask.
+					});
+					
 				}
 
 			} else {
@@ -30,17 +45,39 @@
 			}
 
 		};
+		
 
 		var check = function(item) {
 			item.checked = true;
+			DataService.saveProduct(item).$promise.then(function(data) {
+			}, function(error) {
+				item.checked = false;
+				alertError(error);
+			})['finally'](function() {
+				// TODO here I should stop the window mask.
+			});
 		}
 
 		var restore = function(item) {
 			item.checked = false;
+			DataService.saveProduct(item).$promise.then(function(data) {
+			}, function(error) {
+				item.checked = true;
+				alertError(error);
+			})['finally'](function() {
+				// TODO here I should stop the window mask.
+			});
 		} 
 
 		var remove = function(products, item) {
-			products.splice(products.indexOf(item), 1);
+			
+			DataService.deleteProduct(item).$promise.then(function() {
+				products.splice(products.indexOf(item), 1);
+			}, function(error) {
+				alertError(error);
+			})['finally'](function() {
+				// TODO here I should stop the window mask.
+			});
 			return products;
 		}
 
@@ -59,8 +96,9 @@
 		 * Private methods
 		 */
 
-		function product(name, price, checked) {
+		function product(id, name, price, checked) {
 			return {
+				id: id,
 				name : name,
 				price : price,
 				checked : checked
@@ -71,11 +109,16 @@
 		 * Return
 		 */
 		return {
+			get : get,
 			add : add,
 			check : check,
 			remove : remove,
 			restore : restore,
 			calculateTotalPrice : calculateTotalPrice
+		}
+		
+		function alertError(error) {
+			$ngBootbox.alert("There was an error during this action. <br />Error code: " + error.status + ", " + error.data+"<br /><strong>Please retry</strong>");
 		}
 	}
 })();

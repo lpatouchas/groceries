@@ -2,23 +2,20 @@
 	'use strict';
 
 	angular.module('groceriesApp').controller('GroceriesAppCtrl', [
-		'$scope', '$ngBootbox', 'DataService', 'ActionsService', todoCtrl
+		'$scope', '$ngBootbox', 'ActionsService', todoCtrl
 	]);
 
-	function todoCtrl($scope, $ngBootbox, DataService, ActionsService) {
+	function todoCtrl($scope, $ngBootbox, ActionsService) {
 		$scope.products = [];
 
-		DataService.getProducts().$promise.then(function(data) {
+		ActionsService.get().then(function(data) {
 			$scope.products = data;
-		}, function(error) {
-			alertError(error);
-		})['finally'](function() {
-			//TODO here I should stop the window mask.
 		});
 
 		$scope.add = function() {
 			ActionsService.add($scope.newProductName, $scope.newProductPrice, $scope.products);
 			restoreInput();
+
 		}
 
 		$scope.check = function(item) {
@@ -43,10 +40,6 @@
 		function restoreInput() {
 			delete $scope.newProductPrice;
 			delete $scope.newProductName;
-		}
-
-		function alertError(error) {
-			$ngBootbox.alert("Can't load data. <br />Error code: " + error.status + ", " + error.data);
 		}
 	}
 })();

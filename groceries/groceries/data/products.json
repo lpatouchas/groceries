@@ -1,35 +1,42 @@
 [
 	{
+		"id":1,
         "name": "apples", 
         "price": 3.1,
         "checked": false
     },
     {
+    	"id":2,
         "name": "oragnes", 
         "price": 6,
         "checked": false
     },
     {
+    	"id":3,
         "name": "mellon", 
         "price": 2.2,
         "checked": false
     },
-    {
+    {	
+    	"id":4,
         "name": "Pasta", 
         "price": 4.2,
         "checked": false 
     },
     {
+    	"id":5,
         "name": "Milk", 
         "price": 1.2,
         "checked": false 
     },
     {
+    	"id":6,
         "name": "Eggs", 
         "price": 3.1,
         "checked": true
     },
     {
+    	"id":7,
         "name": "onions", 
         "price": 2,
         "checked": true
