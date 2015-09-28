@@ -22,3 +22,15 @@ groceries-backend/target/classes/gr/patouchas/groceries/rest/Application.class
 groceries-backend/target/classes/gr/patouchas/groceries/rest/GroceriesRest.class
 groceries-ui/.settings/.jsdtscope
 groceries-backend/target/*
+groceries-backend/target/classes/gr/patouchas/groceries/config/CrossDomainRequestEnabler.class
+groceries-backend/target/classes/gr/patouchas/groceries/config/Groceries.class
+groceries-backend/target/classes/gr/patouchas/groceries/config/ResourcesFactory.class
+groceries-backend/target/classes/gr/patouchas/groceries/domain/GroceriesRepository.class
+groceries-backend/target/classes/gr/patouchas/groceries/domain/GroceriesRepositoryImpl.class
+groceries-backend/target/classes/gr/patouchas/groceries/domain/Product.class
+groceries-backend/target/classes/gr/patouchas/groceries/domain/QProduct.class
+groceries-backend/target/classes/gr/patouchas/groceries/rest/Application.class
+groceries-backend/target/classes/gr/patouchas/groceries/rest/GroceriesRest.class
+groceries-ui/.settings/org.eclipse.wst.jsdt.ui.superType.container
+groceries-ui/.settings/org.eclipse.wst.jsdt.ui.superType.name
+.gitignore
