@@ -23,7 +23,7 @@
 	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy">To Buy, <span>Current session Price: <price value="{{currentSessionPrice}}"/></span></div>
 	<div id="toBuy" class="collapse in">
 		<div class="list-group-item repeated-item" href="#" ng-repeat="item in products | filter:newProductName | filter:{checked:false}">
-		<product item="item" check="check(item)"></product>
+		<product item="item" check="check(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
 		</div>
 	</div>
 </div>
@@ -31,7 +31,7 @@
 	<div class="list-group-item active" data-toggle="collapse" data-target="#bought">Bought</div>
 	<div id="bought" class="collapse in">
 		<div class="list-group-item repeated-item" ng-repeat="item in products | filter:newProductName | filter:{checked:true}">
-		<product item="item" checked="true" query="query" remove="remove(item)" restore="restore(item)"></product>
+		<product item="item" remove="remove(item)" restore="restore(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
 		</div>
 	</div>
 </div>

@@ -20,7 +20,11 @@
 				checked: '@checked',
 				check: '&',
 				restore: '&',
-				remove: '&'
+				remove: '&',
+				onshow: '&',
+				onhide: '&',
+				editId: '=',
+				update: '&'
 			},
 			templateUrl : 'groceries/product.html'
 		};

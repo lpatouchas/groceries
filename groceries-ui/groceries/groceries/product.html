@@ -12,15 +12,30 @@
 </div> -->
 <div class="row animate-repeat">
 	<div class="col-xs-8" ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}">
-			{{item.name}},
-			<price value="{{item.price}}" />
+			<a href="#"
+			ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
+			 editable-text="item.name" 
+						ng-show="item.id != editId" 
+						onshow="onshow(item)" 
+						onhide="onhide()" 
+						onaftersave="update(item)">{{item.name}}</a>
+			<a href="#" 
+			ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
+			editable-number="item.price" 
+						e-step="any" 
+						ng-show="item.id != editId" 
+						onshow="onshow(item)" 
+						onhide="onhide()" 
+						onaftersave="update(item)">,
+				<price value="{{item.price}}"/>
+			</a>
 	</div>
-	<div class="col-xs-4 small-padding" style="text-align: center;" ng-if="!item.checked">
+	<div class="col-xs-4 small-padding" style="text-align: center;"  ng-if="!item.checked"  ng-show="item.id != editId">
 		<button type="button" class="btn btn-primary full-width" ng-click="check(item)" aria-label="Left Align">
 	  		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		</button>
 	</div>
-	<div ng-if="item.checked">
+	<div ng-if="item.checked" ng-show="item.id != editId">
 		<div class="col-xs-2 small-padding" style="text-align: center;">
 			<button type="button" class="btn btn-danger full-width" ng-click="remove(item)"  aria-label="Left Align">
 		  		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

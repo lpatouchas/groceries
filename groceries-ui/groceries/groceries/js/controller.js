@@ -19,6 +19,10 @@
 			restoreInput();
 
 		}
+		
+		$scope.update = function (item) {
+			ActionsService.add(item.name, item.price, $scope.products);
+		};
 
 		$scope.check = function(item) {
 			ActionsService.check(item);
@@ -41,6 +45,15 @@
 			return ActionsService.calculateTotalPrice($scope.products);
 		}
 
+		$scope.editId = -1;
+		$scope.onshow = function (item){
+			$scope.editId = item.id;
+		}
+		$scope.onhide = function (){
+			$scope.editId = -1;
+		}
+		
+		
 		function restoreInput() {
 			delete $scope.newProductPrice;
 			delete $scope.newProductName;
