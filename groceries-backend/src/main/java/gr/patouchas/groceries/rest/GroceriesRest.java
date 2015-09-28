@@ -28,7 +28,11 @@ public class GroceriesRest {
 	@GET
 	@Produces("application/json;charset=UTF-8")
 	public Response loadGroceries() {
-		return Response.status(Response.Status.OK).entity(this.groceries.getProducts()).build();
+		try {
+			return Response.status(Response.Status.OK).entity(this.groceries.getProducts()).build();
+		} catch (final Exception e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
 	}
 
 	@POST
@@ -41,6 +45,7 @@ public class GroceriesRest {
 			final Product newProduct = this.groceries.saveProduct(product);
 			return Response.status(Response.Status.OK).entity(newProduct).build();
 		} catch (final Exception e) {
+			System.out.println(e);
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 
@@ -54,6 +59,7 @@ public class GroceriesRest {
 			this.groceries.deleteProduct(id);
 			return Response.status(Response.Status.OK).build();
 		} catch (final Exception e) {
+			System.out.println(e);
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 

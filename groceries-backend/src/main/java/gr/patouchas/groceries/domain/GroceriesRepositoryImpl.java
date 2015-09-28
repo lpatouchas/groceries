@@ -20,7 +20,7 @@ public class GroceriesRepositoryImpl implements GroceriesRepository {
 		final QProduct product = QProduct.product;
 		final JPAQuery query = new JPAQuery(this.em);
 		query.distinct();
-		query.from(product);
+		query.from(product).orderBy(product.name.asc());
 		return query.list(product);
 	}
 

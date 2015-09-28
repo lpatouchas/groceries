@@ -32,13 +32,17 @@ public class Product implements Serializable {
 	@Column
 	private BigDecimal price;
 
+	@Column(columnDefinition = "default '1'")
+	private Integer quantity;
+
 	@Column
 	private Boolean checked;
 
-	public Product(final Long id, final String name, final BigDecimal price, final Boolean checked) {
+	public Product(final Long id, final String name, final BigDecimal price, final Integer quantity, final Boolean checked) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.quantity = quantity;
 		this.price = price;
 		this.checked = checked;
 	}
@@ -88,6 +92,14 @@ public class Product implements Serializable {
 
 	public void setChecked(final Boolean checked) {
 		this.checked = checked;
+	}
+
+	public Integer getQuantity() {
+		return this.quantity;
+	}
+
+	public void setQuantity(final Integer quantity) {
+		this.quantity = quantity;
 	}
 
 }
