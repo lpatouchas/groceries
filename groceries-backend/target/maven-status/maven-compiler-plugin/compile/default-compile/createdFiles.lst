@@ -1,9 +1,0 @@
-gr\patouchas\groceries\config\CrossDomainRequestEnabler.class
-gr\patouchas\groceries\config\Groceries.class
-gr\patouchas\groceries\domain\QProduct.class
-gr\patouchas\groceries\rest\Application.class
-gr\patouchas\groceries\config\ResourcesFactory.class
-gr\patouchas\groceries\domain\Product.class
-gr\patouchas\groceries\domain\GroceriesRepository.class
-gr\patouchas\groceries\rest\GroceriesRest.class
-gr\patouchas\groceries\domain\GroceriesRepositoryImpl.class
