@@ -47,6 +47,19 @@ body {
 	font-size: 1em !important;
 }
 
+.product-info {
+	font-size: 0.8em !important;
+}
+
+
+.quantity-x-sml {
+	font-size: 0.6em !important;
+}
+
+.quantity {
+	font-weight: bold;
+}
+
 .dropdown-menu {
 	font-size: 1em !important;
 	width: 100% !important;
@@ -61,9 +74,9 @@ body {
 	margin-bottom: 0px !important;
 }
 
-.row {
+/* .row {
 	margin-right: 0px !important;
-}
+} */
 
 .full-width {
 	width: 100%;
@@ -169,4 +182,8 @@ div.special>div[class*="col-"] {
 @-o-keyframes my_animation {
   from { opacity:1; }
   to { opacity:0; }
+}
+
+.gray-icon {
+	 opacity:.25;
 }

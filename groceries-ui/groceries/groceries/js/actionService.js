@@ -18,19 +18,20 @@
 			});
 		}
 
-		var add = function(newProductName, newProductPrice, products) {
+		var add = function(newProductName, newProductPrice, newProductQuantity, products) {
 			if (!(typeof newProductName === 'undefined' || typeof newProductPrice === 'undefined')) {
 				var found = false;
 				angular.forEach(products, function(item, index) {
 					if (item.name.toLowerCase() == newProductName.toLowerCase()) {
 						found = true;
 						item.price = newProductPrice
+						item.quantity = newProductQuantity;
 						restore(item);
 					}
 				});
 
 				if (!found) {
-					DataService.saveProduct(new product('',newProductName, newProductPrice, false)).$promise.then(function(data) {
+					DataService.saveProduct(new product('',newProductName, newProductPrice,newProductQuantity, false)).$promise.then(function(data) {
 						products.push(data);
 					}, function(error) {
 						alertError(error);
@@ -71,23 +72,30 @@
 
 		var remove = function(products, item) {
 			
-			DataService.deleteProduct(item).$promise.then(function() {
-				products.splice(products.indexOf(item), 1);
-			}, function(error) {
-				alertError(error);
-			})['finally'](function() {
-				// TODO here I should stop the window mask.
-			});
-			return products;
+			$ngBootbox.confirm('Delete <strong>'+item.name+'</strong> ?')
+		    .then(function() {
+		    	DataService.deleteProduct(item).$promise.then(function() {
+					products.splice(products.indexOf(item), 1);
+				}, function(error) {
+					alertError(error);
+				})['finally'](function() {
+					// TODO here I should stop the window mask.
+				});
+				return products;
+		    }, function() {
+		        console.log('Confirm dismissed!');
+		    });
+			
+			
 		}
 
 		var calculateTotalPrice = function(products) {
 			var total = 0;
 			angular.forEach(products, function(value, key) {
 				if (!value.checked && !isNaN(value.price)) {
-					total += value.price;
+					var itemTotal = value.price * value.quantity;
+					total += itemTotal;
 				}
-
 			})
 			return Math.round(total * 100) / 100;
 		}
@@ -96,11 +104,12 @@
 		 * Private methods
 		 */
 
-		function product(id, name, price, checked) {
+		function product(id, name, price, quantity, checked) {
 			return {
 				id: id,
 				name : name,
 				price : price,
+				quantity: isNaN(quantity) ? 1 : quantity,
 				checked : checked
 			}
 		}

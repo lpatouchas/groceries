@@ -4,19 +4,23 @@
 	<div>Total Price:<price value="{{totalPrice()}}"/></span> for <strong>{{( products | filter:{checked:false} ).length}}</strong> items. </div>
 </div>
 <div>
-    <!-- <input type="text" class="form-control" ng-model="newItem"   bs-options="item as item.name for item  in bought" bs-typeahead placeholder="type a product"/> -->
-    <div class="row  no-gutters">
-		    <div class="col-xs-8">
-				    <input type="text" class="form-control" ng-model="newProductName" placeholder="search/add product"/>
-				    <i class="glyphicon glyphicon-search form-control-feedback"></i> 
-		    </div>
-		    <div class="col-xs-4">
-				    <input type="number" class="form-control" ng-model="newProductPrice" placeholder="price"/> 
-				    <i class="glyphicon glyphicon-euro form-control-feedback"></i> 
-		    </div>
-    </div>
-    <button type="button" class="btn btn-block btn-default" value="Add" ng-click="add()">Add <span class="glyphicon glyphicon-plus"></span></button>
-	
+	<form name="newProductForm">
+	    <div class="row  no-gutters">
+			    <div class="col-xs-8">
+					    <input type="text" class="form-control" ng-model="newProductName" placeholder="search/add product" required/>
+					    <i class="gray-icon glyphicon glyphicon-shopping-cart form-control-feedback"></i> 
+			    </div>
+			    <div class="col-xs-2">
+					    <input type="number" class="form-control" ng-model="newProductPrice" placeholder="" required/> 
+					    <i class="gray-icon glyphicon glyphicon-euro form-control-feedback"></i> 
+			    </div>
+			    <div class="col-xs-2">
+					    <input type="number" class="form-control" ng-model="newProductQuantity" placeholder=""/> 
+					    <i class="gray-icon glyphicon glyphicon-plus-sign form-control-feedback"></i> 
+			    </div>
+	    </div>
+    	<button ng-disabled="newProductForm.$invalid" type="button" class="btn btn-block btn-default" value="Add" ng-disabled="{{newProductPrice && newProductQuantity}}" ng-click="add()">Add <span class="glyphicon glyphicon-plus"></span></button>
+	</form>
 </div>
 </nav>
 <div class="list-group">

@@ -1,34 +1,42 @@
-<!-- <div class="row animate-repeat" ng-if="!checked">
-	<div class="col-xs-8">
-		<a href="#" editable-text="item.name">{{item.name || "empty"}}</a>, <a href="#" editable-number="item.price" e-step="any"><price
-				value="{{item.price || 0}}" /></a>
-	</div>
-	
-	<div class="col-xs-4 small-padding" style="text-align: center;" >
-		<button type="button" class="btn btn-primary full-width" ng-click="check(item)" aria-label="Left Align">
-	  		<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-		</button>
-	</div>
-</div> -->
 <div class="row animate-repeat">
 	<div class="col-xs-8" ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}">
-			<a href="#"
-			ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
-			 editable-text="item.name" 
-						ng-show="item.id != editId" 
-						onshow="onshow(item)" 
-						onhide="onhide()" 
-						onaftersave="update(item)">{{item.name}}</a>
-			<a href="#" 
-			ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
-			editable-number="item.price" 
-						e-step="any" 
-						ng-show="item.id != editId" 
-						onshow="onshow(item)" 
-						onhide="onhide()" 
-						onaftersave="update(item)">,
-				<price value="{{item.price}}"/>
-			</a>
+			<div>
+				<a href="#"
+				ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
+				 editable-text="item.name" 
+							ng-show="item.id != editId" 
+							onshow="onshow(item)" 
+							onhide="onhide()" 
+							onaftersave="update(item)">{{item.name}}
+				</a>
+			</div>			
+			<div class="product-info">	
+				<span ng-show="item.id != editId">Price:</span>
+				<a href="#"
+				ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
+					editable-number="item.price" 
+					e-step="any" 
+					ng-show="item.id != editId" 
+					onshow="onshow(item)" 
+					onhide="onhide()" 
+					onaftersave="update(item)">
+					
+					<price value="{{item.price}}"/>
+					
+				</a>
+				
+				<span ng-show="item.id != editId">, Quantity:</span>
+				<a href="#"
+				ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
+					editable-number="item.quantity" 
+					e-step="any" 
+					ng-show="item.id != editId" 
+					onshow="onshow(item)" 
+					onhide="onhide()" 
+					onaftersave="update(item)">
+					<quantity value="{{item.quantity}}" />
+				</a>
+			</div>	
 	</div>
 	<div class="col-xs-4 small-padding" style="text-align: center;"  ng-if="!item.checked"  ng-show="item.id != editId">
 		<button type="button" class="btn btn-primary full-width" ng-click="check(item)" aria-label="Left Align">

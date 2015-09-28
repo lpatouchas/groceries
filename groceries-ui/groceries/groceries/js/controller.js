@@ -15,19 +15,20 @@
 		});
 
 		$scope.add = function() {
-			ActionsService.add($scope.newProductName, $scope.newProductPrice, $scope.products);
+			ActionsService.add($scope.newProductName, $scope.newProductPrice, $scope.newProductQuantity, $scope.products);
 			restoreInput();
 
 		}
 		
 		$scope.update = function (item) {
-			ActionsService.add(item.name, item.price, $scope.products);
+			ActionsService.add(item.name, item.price, item.quantity,  $scope.products);
 		};
 
-		$scope.check = function(item) {
+		$scope.check = function (item) {
 			ActionsService.check(item);
 			restoreInput();
-			$scope.currentSessionPrice += item.price;
+			var calcPrice = item.price * item.quantity;
+			$scope.currentSessionPrice += calcPrice;
 			$scope.currentSessionPrice = Math.round($scope.currentSessionPrice * 100) / 100
 		}
 
@@ -57,6 +58,7 @@
 		function restoreInput() {
 			delete $scope.newProductPrice;
 			delete $scope.newProductName;
+			delete $scope.newProductQuantity;
 		}
 	}
 })();

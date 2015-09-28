@@ -11,6 +11,16 @@
 		};
 	});
 	
+	angular.module('groceriesApp').directive('quantity', function() {
+		return {
+			restrict: 'AE',
+			scope: {
+				quantity: '@value'
+			},
+			template : '<span class="quantity-x-sml">x</span><span class="quantity">{{quantity}}</span>'
+		};
+	});
+	
 	
 	angular.module('groceriesApp').directive('product', function() {
 		return {
