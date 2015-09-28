@@ -1,0 +1,38 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+<div class="alert alert alert-info" role="alert">
+	<div>Total Price:<price value="{{totalPrice()}}"/></span> for <strong>{{( products | filter:{checked:false} ).length}}</strong> items. </div>
+</div>
+<div>
+    <!-- <input type="text" class="form-control" ng-model="newItem"   bs-options="item as item.name for item  in bought" bs-typeahead placeholder="type a product"/> -->
+    <div class="row  no-gutters">
+		    <div class="col-xs-8">
+				    <input type="text" class="form-control" ng-model="newProductName" placeholder="search/add product"/>
+				    <i class="glyphicon glyphicon-search form-control-feedback"></i> 
+		    </div>
+		    <div class="col-xs-4">
+				    <input type="number" class="form-control" ng-model="newProductPrice" placeholder="price"/> 
+				    <i class="glyphicon glyphicon-euro form-control-feedback"></i> 
+		    </div>
+    </div>
+    <button type="button" class="btn btn-block btn-default" value="Add" ng-click="add()">Add <span class="glyphicon glyphicon-plus"></span></button>
+	
+</div>
+</nav>
+<div class="list-group">
+	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy">To Buy, <span>Current session Price: <price value="{{currentSessionPrice}}"/></span></div>
+	<div id="toBuy" class="collapse in">
+		<div class="list-group-item repeated-item" href="#" ng-repeat="item in products | filter:newProductName | filter:{checked:false}">
+		<product item="item" check="check(item)"></product>
+		</div>
+	</div>
+</div>
+<div class="list-group" ng-show="( products | filter:{checked:true} ).length > 0">
+	<div class="list-group-item active" data-toggle="collapse" data-target="#bought">Bought</div>
+	<div id="bought" class="collapse in">
+		<div class="list-group-item repeated-item" ng-repeat="item in products | filter:newProductName | filter:{checked:true}">
+		<product item="item" checked="true" query="query" remove="remove(item)" restore="restore(item)"></product>
+		</div>
+	</div>
+</div>
+
