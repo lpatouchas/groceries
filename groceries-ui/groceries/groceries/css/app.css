@@ -1,8 +1,15 @@
 body {
-	padding-top: 6.6em;
 	font-size: 2em !important;
+	
 }
 
+.openNav {
+	padding-top: 6.6em;
+}
+
+.closeNav {
+	padding-top: 2.2em;
+}
 .navbar {
     -webkit-box-shadow: 0 8px 6px -6px #999;
     -moz-box-shadow: 0 8px 6px -6px #999;

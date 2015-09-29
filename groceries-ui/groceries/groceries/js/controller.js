@@ -29,7 +29,7 @@
 			restoreInput();
 			var calcPrice = item.price * item.quantity;
 			$scope.currentSessionPrice += calcPrice;
-			$scope.currentSessionPrice = Math.round($scope.currentSessionPrice * 100) / 100
+			$scope.currentSessionPrice = Math.round($scope.currentSessionPrice * 100) / 100;
 		}
 
 		$scope.remove = function(item) {
@@ -46,19 +46,29 @@
 			return ActionsService.calculateTotalPrice($scope.products);
 		}
 
+		
+		function restoreInput() {
+			delete $scope.newProductPrice;
+			delete $scope.newProductName;
+			delete $scope.newProductQuantity;
+		}
+		
+		//show hide stuff
+		$scope.showNav = false;
+		$scope.showHideNav = function () {
+			$scope.showNav = !$scope.showNav;
+		}
+		
+		$scope.getTopPadding = function () {
+			return $scope.showNav ? 'openNav' : 'closeNav';
+		}
+		
 		$scope.editId = -1;
 		$scope.onshow = function (item){
 			$scope.editId = item.id;
 		}
 		$scope.onhide = function (){
 			$scope.editId = -1;
-		}
-		
-		
-		function restoreInput() {
-			delete $scope.newProductPrice;
-			delete $scope.newProductName;
-			delete $scope.newProductQuantity;
 		}
 	}
 })();

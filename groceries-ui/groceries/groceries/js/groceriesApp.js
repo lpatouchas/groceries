@@ -10,7 +10,7 @@
 			$routeProvider.when('/', {
 				templateUrl : 'groceries/groceries.html',
 				controller : 'GroceriesAppCtrl'
-			});
+			}).otherwise({ redirectTo: 'groceries/groceries.html' });;
 		}
 	]);
 	

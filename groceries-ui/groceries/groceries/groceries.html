@@ -1,14 +1,18 @@
-
+<div ng-class="getTopPadding()"></div>
 <nav class="navbar navbar-default navbar-fixed-top">
-<div class="alert alert alert-info" role="alert">
-	<div>Total Price:<price value="{{totalPrice()}}"/></span> for <strong>{{( products | filter:{checked:false} ).length}}</strong> items. </div>
+<div class="alert alert alert-info row" role="alert" ng-click="showHideNav()">
+	<div class="col-xs-11">Total Price:<price value="{{totalPrice()}}"/></span> for <strong>{{( products | filter:{checked:false} ).length}}</strong> items. </div>
+	<div class="col-xs-1">
+		<span ng-show="!showNav" class="glyphicon glyphicon glyphicon-triangle-bottom"></span>
+		<span ng-show="showNav" class="glyphicon glyphicon glyphicon-triangle-top"></span>
+	</div>
 </div>
-<div>
+<div ng-show="showNav">
 	<form name="newProductForm">
 	    <div class="row  no-gutters">
 			    <div class="col-xs-8">
 					    <input type="text" class="form-control" ng-model="newProductName" placeholder="search/add product" required/>
-					    <i class="gray-icon glyphicon glyphicon-shopping-cart form-control-feedback"></i> 
+					    <i class="gray-icon glyphicon glyphicon-search form-control-feedback"></i> 
 			    </div>
 			    <div class="col-xs-2">
 					    <input type="number" class="form-control" ng-model="newProductPrice" placeholder="" required/> 
@@ -19,12 +23,12 @@
 					    <i class="gray-icon glyphicon glyphicon-plus-sign form-control-feedback"></i> 
 			    </div>
 	    </div>
-    	<button ng-disabled="newProductForm.$invalid" type="button" class="btn btn-block btn-default" value="Add" ng-disabled="{{newProductPrice && newProductQuantity}}" ng-click="add()">Add <span class="glyphicon glyphicon-plus"></span></button>
+    	<button ng-disabled="newProductForm.$invalid" type="button" class="btn btn-block btn-default" value="Add" ng-disabled="{{newProductPrice && newProductQuantity}}" ng-click="add()">Add <span class="glyphicon glyphicon-shopping-cart"></span></button>
 	</form>
 </div>
 </nav>
 <div class="list-group">
-	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy">To Buy, <span>Current session Price: <price value="{{currentSessionPrice}}"/></span></div>
+	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy"">To Buy, <span>Current session Price: <price value="{{currentSessionPrice}}"/></span></div>
 	<div id="toBuy" class="collapse in">
 		<div class="list-group-item repeated-item" href="#" ng-repeat="item in products | filter:newProductName | filter:{checked:false}">
 		<product item="item" check="check(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
