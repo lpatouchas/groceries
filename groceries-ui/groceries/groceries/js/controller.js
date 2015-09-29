@@ -2,30 +2,30 @@
 	'use strict';
 
 	angular.module('groceriesApp').controller('GroceriesAppCtrl', [
-		'$scope', '$ngBootbox', 'ActionsService', todoCtrl
+		'$scope', '$ngBootbox', 'GroceriesService', todoCtrl
 	]);
 
-	function todoCtrl($scope, $ngBootbox, ActionsService) {
+	function todoCtrl($scope, $ngBootbox, GroceriesService) {
 		$scope.products = [];
 		
 		$scope.currentSessionPrice = 0;
 
-		ActionsService.get().then(function(data) {
+		GroceriesService.getProducts().then(function(data) {
 			$scope.products = data;
 		});
 
 		$scope.add = function() {
-			ActionsService.add($scope.newProductName, $scope.newProductPrice, $scope.newProductQuantity, $scope.products);
+			GroceriesService.addProduct($scope.newProductName, $scope.newProductPrice, $scope.newProductQuantity, $scope.products);
 			restoreInput();
 
 		}
 		
 		$scope.update = function (item) {
-			ActionsService.add(item.name, item.price, item.quantity,  $scope.products);
+			GroceriesService.updateProduct(item);
 		};
 
 		$scope.check = function (item) {
-			ActionsService.check(item);
+			GroceriesService.checkProduct(item);
 			restoreInput();
 			var calcPrice = item.price * item.quantity;
 			$scope.currentSessionPrice += calcPrice;
@@ -33,17 +33,17 @@
 		}
 
 		$scope.remove = function(item) {
-			ActionsService.remove($scope.products, item);
+			GroceriesService.removeProduct($scope.products, item);
 			restoreInput();
 		}
 
 		$scope.restore = function(item) {
-			ActionsService.restore(item);
+			GroceriesService.uncheckProduct(item);
 			restoreInput();
 		}
 
 		$scope.totalPrice = function() {
-			return ActionsService.calculateTotalPrice($scope.products);
+			return GroceriesService.calculateTotalPrice($scope.products);
 		}
 
 		

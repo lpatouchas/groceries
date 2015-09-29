@@ -1,17 +1,17 @@
 (function() {
 	'use strict';
-	angular.module('groceriesApp').factory('ActionsService', [
-		'$ngBootbox','blockUI','DataService', actionService
+	angular.module('groceriesApp').factory('GroceriesService', [
+		'$ngBootbox','blockUI','ProductsService', actionService
 	]);
 
-	function actionService($ngBootbox, blockUI, DataService) {
+	function actionService($ngBootbox, blockUI, ProductsService) {
 		
 		/*
 		 * Public methods  
 		 */
-		var get = function(){
+		var getProducts = function(){
 			blockUI.start();
-			return DataService.getProducts().$promise.then(function(data) {
+			return ProductsService.query().$promise.then(function(data) {
 				return data;
 			}, function(error) {
 				alertError(error);
@@ -20,7 +20,7 @@
 			});
 		}
 
-		var add = function(newProductName, newProductPrice, newProductQuantity, products) {
+		var addProduct = function(newProductName, newProductPrice, newProductQuantity, products) {
 			if (!(typeof newProductName === 'undefined' || typeof newProductPrice === 'undefined')) {
 				var found = false;
 				angular.forEach(products, function(item, index) {
@@ -34,7 +34,7 @@
 
 				if (!found) {
 					blockUI.start("Saving...");
-					DataService.saveProduct(new product('',newProductName, newProductPrice,newProductQuantity, false)).$promise.then(function(data) {
+					ProductsService.save(new product('',newProductName, newProductPrice,newProductQuantity, false)).$promise.then(function(data) {
 						products.push(data);
 					}, function(error) {
 						alertError(error);
@@ -49,38 +49,31 @@
 			}
 
 		};
-			
 		
-		var check = function(item) {
-			item.checked = true;
+		var updateProduct = function(item) {
 			blockUI.start("Saving...");
-			DataService.saveProduct(item).$promise.then(function(data) {
+			ProductsService.save(item).$promise.then(function(data) {
 			}, function(error) {
-				item.checked = false;
 				alertError(error);
 			})['finally'](function() {
 				blockUI.stop();
 			});
 		}
-
-		var restore = function(item) {
-			item.checked = false;
-			blockUI.start("Saving...");
-			DataService.saveProduct(item).$promise.then(function(data) {
-			}, function(error) {
-				item.checked = true;
-				alertError(error);
-			})['finally'](function() {
-				blockUI.stop();
-			});
-		} 
-
-		var remove = function(products, item) {
 			
+		
+		var checkProduct = function(item) {
+			checkOrRestore(item, true);
+		}
+
+		var uncheckProduct = function(item) {
+			checkOrRestore(item, false);
+		} 
+		
+		var removeProduct = function(products, item) {
 			$ngBootbox.confirm('Delete <strong>'+item.name+'</strong> ?')
 		    .then(function() {
 		    	blockUI.start("Saving...");
-		    	DataService.deleteProduct(item).$promise.then(function() {
+		    	ProductsService.remove(item).$promise.then(function() {
 					products.splice(products.indexOf(item), 1);
 				}, function(error) {
 					alertError(error);
@@ -110,6 +103,18 @@
 		 * Private methods
 		 */
 
+		function checkOrRestore(item, check){
+			item.checked = check;
+			blockUI.start("Saving...");
+			ProductsService.save(item).$promise.then(function(data) {
+			}, function(error) {
+				item.checked = !check;
+				alertError(error);
+			})['finally'](function() {
+				blockUI.stop();
+			});
+		}
+		
 		function product(id, name, price, quantity, checked) {
 			return {
 				id: id,
@@ -124,11 +129,12 @@
 		 * Return
 		 */
 		return {
-			get : get,
-			add : add,
-			check : check,
-			remove : remove,
-			restore : restore,
+			getProducts : getProducts,
+			addProduct : addProduct,
+			updateProduct: updateProduct,
+			checkProduct : checkProduct,
+			uncheckProduct : uncheckProduct,
+			removeProduct : removeProduct,
 			calculateTotalPrice : calculateTotalPrice
 		}
 		
