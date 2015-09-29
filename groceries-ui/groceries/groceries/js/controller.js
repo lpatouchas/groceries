@@ -17,7 +17,6 @@
 		$scope.add = function() {
 			GroceriesService.addProduct($scope.newProductName, $scope.newProductPrice, $scope.newProductQuantity, $scope.products);
 			restoreInput();
-
 		}
 		
 		$scope.update = function (item) {
@@ -27,11 +26,19 @@
 		$scope.check = function (item) {
 			GroceriesService.checkProduct(item);
 			restoreInput();
-			var calcPrice = item.price * item.quantity;
-			$scope.currentSessionPrice += calcPrice;
-			$scope.currentSessionPrice = Math.round($scope.currentSessionPrice * 100) / 100;
+			calcCurrentSessionPrice(item,true);
 		}
 
+		
+		function calcCurrentSessionPrice (item, checked){
+			var calcPrice = item.price * item.quantity;
+			//if currentSessionPrice is 0 and we uncheck an item, do not re-calclulate the currentSessionPrice
+			$scope.currentSessionPrice = checked ? $scope.currentSessionPrice + calcPrice : 
+				$scope.currentSessionPrice != 0 ?$scope.currentSessionPrice - calcPrice : $scope.currentSessionPrice;
+			
+			$scope.currentSessionPrice = Math.round($scope.currentSessionPrice * 100) / 100;
+		}
+		
 		$scope.remove = function(item) {
 			GroceriesService.removeProduct($scope.products, item);
 			restoreInput();
@@ -39,6 +46,7 @@
 
 		$scope.restore = function(item) {
 			GroceriesService.uncheckProduct(item);
+			calcCurrentSessionPrice(item,false);
 			restoreInput();
 		}
 

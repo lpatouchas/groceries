@@ -28,8 +28,10 @@
 	</form>
 </div>
 </nav>
+<div class="alert alert alert-warning animate-show" ng-show="currentSessionPrice > 0">Current Session Total Price: <price value="{{currentSessionPrice}}"/>
+</div>
 <div class="list-group">
-	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy"">To Buy, <span>Current session Price: <price value="{{currentSessionPrice}}"/></span></div>
+	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy"">To Buy</div>
 	<div id="toBuy" class="collapse in">
 		<div class="list-group-item repeated-item" href="#" ng-repeat="item in products | filter:newProductName | filter:{checked:false}">
 		<product item="item" check="check(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
