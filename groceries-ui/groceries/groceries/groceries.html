@@ -1,13 +1,14 @@
 <div ng-class="getTopPadding()"></div>
 <nav class="navbar navbar-default navbar-fixed-top">
-<div class="alert alert alert-info row" role="alert" ng-click="showHideNav()">
-	<div class="col-xs-11">Total Price:<price value="{{totalPrice()}}"/></span> for <strong>{{( products | filter:{checked:false} ).length}}</strong> items. </div>
-	<div class="col-xs-1">
+<div class="alert alert alert-info" role="alert" ng-click="showHideNav()">
+		<div>
 		<span ng-show="!showNav" class="glyphicon glyphicon glyphicon-triangle-bottom"></span>
-		<span ng-show="showNav" class="glyphicon glyphicon glyphicon-triangle-top"></span>
-	</div>
+			<span ng-show="showNav" class="glyphicon glyphicon glyphicon-triangle-top"></span>
+		Total:<price value="{{totalPrice()}}"/></span>, <strong>{{( products | filter:{checked:false} ).length}}</strong> items.
+			
+		</div>
 </div>
-<div ng-show="showNav">
+<div ng-show="showNav" class="animate-show">
 	<form name="newProductForm">
 	    <div class="row  no-gutters">
 			    <div class="col-xs-8">
@@ -43,4 +44,3 @@
 		</div>
 	</div>
 </div>
-

@@ -1,20 +1,22 @@
 (function() {
 	'use strict';
 	angular.module('groceriesApp').factory('ActionsService', [
-		'$ngBootbox','DataService', actionService
+		'$ngBootbox','blockUI','DataService', actionService
 	]);
 
-	function actionService($ngBootbox, DataService) {
+	function actionService($ngBootbox, blockUI, DataService) {
 		
 		/*
 		 * Public methods  
 		 */
 		var get = function(){
+			blockUI.start();
 			return DataService.getProducts().$promise.then(function(data) {
 				return data;
 			}, function(error) {
 				alertError(error);
 			})['finally'](function() {
+				blockUI.stop();
 			});
 		}
 
@@ -131,3 +133,6 @@
 		}
 	}
 })();
+
+
+
