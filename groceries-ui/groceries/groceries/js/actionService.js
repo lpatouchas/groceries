@@ -33,12 +33,13 @@
 				});
 
 				if (!found) {
+					blockUI.start("Saving...");
 					DataService.saveProduct(new product('',newProductName, newProductPrice,newProductQuantity, false)).$promise.then(function(data) {
 						products.push(data);
 					}, function(error) {
 						alertError(error);
 					})['finally'](function() {
-						// TODO here I should stop the window mask.
+						blockUI.stop();
 					});
 					
 				}
@@ -52,23 +53,25 @@
 		
 		var check = function(item) {
 			item.checked = true;
+			blockUI.start("Saving...");
 			DataService.saveProduct(item).$promise.then(function(data) {
 			}, function(error) {
 				item.checked = false;
 				alertError(error);
 			})['finally'](function() {
-				// TODO here I should stop the window mask.
+				blockUI.stop();
 			});
 		}
 
 		var restore = function(item) {
 			item.checked = false;
+			blockUI.start("Saving...");
 			DataService.saveProduct(item).$promise.then(function(data) {
 			}, function(error) {
 				item.checked = true;
 				alertError(error);
 			})['finally'](function() {
-				// TODO here I should stop the window mask.
+				blockUI.stop();
 			});
 		} 
 
@@ -76,12 +79,13 @@
 			
 			$ngBootbox.confirm('Delete <strong>'+item.name+'</strong> ?')
 		    .then(function() {
+		    	blockUI.start("Saving...");
 		    	DataService.deleteProduct(item).$promise.then(function() {
 					products.splice(products.indexOf(item), 1);
 				}, function(error) {
 					alertError(error);
 				})['finally'](function() {
-					// TODO here I should stop the window mask.
+					blockUI.stop();
 				});
 				return products;
 		    }, function() {
