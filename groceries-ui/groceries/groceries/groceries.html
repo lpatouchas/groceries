@@ -8,6 +8,8 @@
 			
 		</div>
 </div>
+<div class="alert alert alert-warning animate-show" ng-show="currentSessionPrice > 0">Current Session Total Price: <price value="{{currentSessionPrice}}"/>
+</div>
 <div ng-show="showNav" class="animate-show">
 	<form name="newProductForm">
 	    <div class="row  no-gutters">
@@ -28,8 +30,6 @@
 	</form>
 </div>
 </nav>
-<div class="alert alert alert-warning animate-show" ng-show="currentSessionPrice > 0">Current Session Total Price: <price value="{{currentSessionPrice}}"/>
-</div>
 <div class="list-group">
 	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy"">To Buy</div>
 	<div id="toBuy" class="collapse in">

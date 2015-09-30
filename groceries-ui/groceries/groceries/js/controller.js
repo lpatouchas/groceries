@@ -68,7 +68,11 @@
 		}
 		
 		$scope.getTopPadding = function () {
-			return $scope.showNav ? 'openNav' : 'closeNav';
+			if ($scope.currentSessionPrice == 0) {
+				return $scope.showNav ? 'openNav' : 'closeNav';
+			} else {
+				return $scope.showNav ? 'openNavWithInfo' : 'closeNavWithInfo';
+			}
 		}
 		
 		$scope.editId = -1;
