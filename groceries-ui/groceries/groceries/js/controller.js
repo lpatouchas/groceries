@@ -39,6 +39,10 @@
 			$scope.currentSessionPrice = Math.round($scope.currentSessionPrice * 100) / 100;
 		}
 		
+		$scope.resetCurrentSessionPrice = function(){
+			$scope.currentSessionPrice = 0;
+		}
+		
 		$scope.remove = function(item) {
 			GroceriesService.removeProduct($scope.products, item);
 			restoreInput();

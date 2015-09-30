@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('groceriesApp', [
-		'ngRoute', 'myApp.version','xeditable','ngResource','ngBootbox','ngAnimate','blockUI'
+		'ngRoute', 'myApp.version','xeditable','ngResource','ngBootbox','ngAnimate','blockUI','ngTouch'
 	])
 
 	.config([

@@ -8,7 +8,7 @@
 			
 		</div>
 </div>
-<div class="alert alert alert-warning animate-show" ng-show="currentSessionPrice > 0">Current Session Total Price: <price value="{{currentSessionPrice}}"/>
+<div class="alert alert alert-warning animate-show" ng-show="currentSessionPrice > 0" ng-dblclick="resetCurrentSessionPrice()" ng-swipe-left="resetCurrentSessionPrice()">Current Session Total Price: <price value="{{currentSessionPrice}}"/>
 </div>
 <div ng-show="showNav" class="animate-show">
 	<form name="newProductForm">
