@@ -11,7 +11,7 @@
 				</a>
 			</div>			
 			<div class="product-info">	
-				<span ng-show="item.id != editId">Price:</span>
+				<span ng-show="item.id != editId"><span i18n="common.total"/>:</span>
 				<a href="#"
 				ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
 					editable-number="item.price" 
@@ -25,7 +25,7 @@
 					
 				</a>
 				
-				<span ng-show="item.id != editId">, Quantity:</span>
+				<span ng-show="item.id != editId">, <span i18n="common.quantity"/>:</span>
 				<a href="#"
 				ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
 					editable-number="item.quantity" 

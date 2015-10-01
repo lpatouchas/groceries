@@ -1,0 +1,22 @@
+{
+	
+	"appName" : 					"Λίστα Σουπερμάρκετ"
+    ,"appVersion": 					"εφαρμογή Groceries: v"
+    ,"total": 						"Σύνολο"
+    ,"items": 						"προϊόντα"
+    ,"currentSessionPrice": 		"Τρέχον σύνολο"
+    ,"toBuy": 						"Στην Λίστα"
+    ,"bought": 						"Εκτός Λίστας"
+    ,"add":							"Προσθήκη"
+    ,"price": 						"Τιμή"
+    ,"quantity": 					"Ποσότητα"
+    ,"product": 					"Προϊόν"
+    ,"delete":						"Διαγραφή"
+    ,"saving":						"Αποθήκευση..."
+    ,"loading":						"Φόρτωση..."
+    ,"addError":					"Προσθέσε Προϊόν & Τιμή"
+    ,"genericError":				"Παρουσιάστικε κάποιο πρόβλημα."
+    ,"genericErrorCode":			"Κωδικός Λάθους"
+    ,"genericErrorRetry":			"Ξανα προσπάθησε."
+    ,"questionMark":				";"
+}

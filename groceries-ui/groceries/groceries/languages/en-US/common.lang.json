@@ -1,0 +1,22 @@
+{
+	
+	"appName" : 					"Groceries"
+    ,"appVersion": 					"Groceries app: v"
+    ,"total": 						"Total"
+    ,"items": 						"Products"
+    ,"currentSessionPrice": 		"Current total Price"
+    ,"toBuy": 						"In List"
+    ,"bought": 						"Off List"
+    ,"add":							"Add"
+    ,"price": 						"Price"
+    ,"quantity": 					"Quantity"
+    ,"product": 					"Product"
+    ,"delete":						"Delete"
+    ,"saving":						"Saving..."
+    ,"loading":						"Loading..."
+    ,"addError":					"Please Add Product & Price"
+    ,"genericError":				"There was an error."
+    ,"genericErrorCode":			"Error Code"
+    ,"genericErrorRetry":			"Please retry"
+    ,"questionMark":				"?"
+}

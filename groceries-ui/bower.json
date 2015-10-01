@@ -6,11 +6,10 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "~1.4.0",
-    "angular-loader": "~1.4.0",
-    "angular-mocks": "~1.4.0",
-    "angular-route": "~1.4.0",
-    "html5-boilerplate": "~5.2.0",
-    "ngBootbox": "~0.1.1"
+    "angular": "~1.4.7",
+    "angular-localization": "~1.2.1"
+  },
+  "resolutions": {
+    "angular": ">=1.2 < 2"
   }
 }

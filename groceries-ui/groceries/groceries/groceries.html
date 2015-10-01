@@ -4,17 +4,17 @@
 		<div>
 		<span ng-show="!showNav" class="glyphicon glyphicon glyphicon-triangle-bottom"></span>
 			<span ng-show="showNav" class="glyphicon glyphicon glyphicon-triangle-top"></span>
-		Total:<price value="{{totalPrice()}}"/></span>, <strong>{{( products | filter:{checked:false} ).length}}</strong> items.
+		<span i18n="common.total"/>: <price value="{{totalPrice()}}"/></span>, <strong>{{( products | filter:{checked:false} ).length}}</strong> <span i18n="common.items"/>.
 			
 		</div>
 </div>
-<div class="alert alert alert-warning animate-show" ng-show="currentSessionPrice > 0" ng-dblclick="resetCurrentSessionPrice()" ng-swipe-left="resetCurrentSessionPrice()">Current Session Total Price: <price value="{{currentSessionPrice}}"/>
+<div class="alert alert alert-warning animate-show" ng-show="currentSessionPrice > 0" ng-dblclick="resetCurrentSessionPrice()" ng-swipe-left="resetCurrentSessionPrice()"><span i18n="common.currentSessionPrice"/>: <price value="{{currentSessionPrice}}"/>
 </div>
 <div ng-show="showNav" class="animate-show">
 	<form name="newProductForm">
 	    <div class="row  no-gutters">
 			    <div class="col-xs-8">
-					    <input type="text" class="form-control" ng-model="newProductName" placeholder="search/add product" required/>
+					    <input type="text" class="form-control" ng-model="newProductName" data-i18n-attr="{placeholder: 'common.product'}" required/>
 					    <i class="gray-icon glyphicon glyphicon-search form-control-feedback"></i> 
 			    </div>
 			    <div class="col-xs-2">
@@ -26,12 +26,12 @@
 					    <i class="gray-icon glyphicon glyphicon-plus-sign form-control-feedback"></i> 
 			    </div>
 	    </div>
-    	<button ng-disabled="newProductForm.$invalid" type="button" class="btn btn-block btn-default" value="Add" ng-disabled="{{newProductPrice && newProductQuantity}}" ng-click="add()">Add <span class="glyphicon glyphicon-shopping-cart"></span></button>
+    	<button ng-disabled="newProductForm.$invalid" type="button" class="btn btn-block btn-default" ng-disabled="{{newProductPrice && newProductQuantity}}" ng-click="add()"><span i18n="common.add"/> <span class="glyphicon glyphicon-shopping-cart"></span></button>
 	</form>
 </div>
 </nav>
 <div class="list-group">
-	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy"">To Buy</div>
+	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy""><span i18n="common.toBuy"/></div>
 	<div id="toBuy" class="collapse in">
 		<div class="list-group-item repeated-item" href="#" ng-repeat="item in products | filter:newProductName | filter:{checked:false}">
 		<product item="item" check="check(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
@@ -39,7 +39,7 @@
 	</div>
 </div>
 <div class="list-group" ng-show="( products | filter:{checked:true} ).length > 0">
-	<div class="list-group-item active" data-toggle="collapse" data-target="#bought">Bought</div>
+	<div class="list-group-item active" data-toggle="collapse" data-target="#bought"><span i18n="common.bought"/></div>
 	<div id="bought" class="collapse in">
 		<div class="list-group-item repeated-item" ng-repeat="item in products | filter:newProductName | filter:{checked:true}">
 		<product item="item" remove="remove(item)" restore="restore(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>

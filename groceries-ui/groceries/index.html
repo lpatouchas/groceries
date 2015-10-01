@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Groceries App</title>
+<title i18n="common.appName"></title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="groceries/css/app.css">
@@ -27,7 +27,7 @@
 	<div ng-view></div>
 
 	<div>
-		<small>Groceries App: v<span app-version></span></small>
+		<small><span i18n="common.appVersion"></span><span app-version></span></small>
 	</div>
 
 	<!-- In production use:
@@ -42,6 +42,9 @@
 	<script src="bower_components/bootbox/bootbox.js"></script>
     <script src="bower_components/ngBootbox/dist/ngBootbox.min.js"></script>
     <script src="components/angular-block-ui/angular-block-ui.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script src="bower_components/angular-localization/angular-localization.js"></script>
 	<!-- <script src="app.js"></script> -->
 	<script src="groceries/js/groceriesApp.js"></script>
 	<script src="groceries/js/groceriesService.js"></script>

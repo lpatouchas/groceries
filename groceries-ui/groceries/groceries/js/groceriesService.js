@@ -1,16 +1,38 @@
 (function() {
 	'use strict';
 	angular.module('groceriesApp').factory('GroceriesService', [
-		'$ngBootbox','blockUI','ProductsService', actionService
+		'$ngBootbox','locale','blockUI','ProductsService', actionService
 	]);
 
-	function actionService($ngBootbox, blockUI, ProductsService) {
+	function actionService($ngBootbox,locale, blockUI, ProductsService) {
+		
+		var dltLabel;
+		var saveLabel;
+		var loadingLabel;
+		var addErrorlbl;
+		var genericErrorlbl;
+		var genericErrorCodelbl;
+		var genericErrorRetrylbl;
+		var questionMarklbl;
+		
+		
+		
+		locale.ready('common').then(function () {
+			dltLabel = locale.getString('common.delete');
+			saveLabel = locale.getString('common.save');
+			loadingLabel = locale.getString('common.loading');
+			addErrorlbl = locale.getString('common.addError');
+			genericErrorlbl = locale.getString('common.genericError');
+			genericErrorCodelbl = locale.getString('common.genericErrorCode');
+			genericErrorRetrylbl = locale.getString('common.genericErrorRetry');
+			questionMarklbl = locale.getString('common.questionMark');
+        });
 		
 		/*
 		 * Public methods  
 		 */
 		var getProducts = function(){
-			blockUI.start();
+			blockUI.start(locale.getString('common.loading'));
 			return ProductsService.query().$promise.then(function(data) {
 				return data;
 			}, function(error) {
@@ -33,7 +55,7 @@
 				});
 
 				if (!found) {
-					blockUI.start("Saving...");
+					blockUI.start(saveLabel);
 					ProductsService.save(new product('',newProductName, newProductPrice,newProductQuantity, false)).$promise.then(function(data) {
 						products.push(data);
 					}, function(error) {
@@ -45,13 +67,13 @@
 				}
 
 			} else {
-				$ngBootbox.alert('Please add a both Product name & price!');
+				$ngBootbox.alert(addErrorlbl);
 			}
 
 		};
 		
 		var updateProduct = function(item) {
-			blockUI.start("Saving...");
+			blockUI.start(saveLabel);
 			ProductsService.save(item).$promise.then(function(data) {
 			}, function(error) {
 				alertError(error);
@@ -70,9 +92,9 @@
 		} 
 		
 		var removeProduct = function(products, item) {
-			$ngBootbox.confirm('Delete <strong>'+item.name+'</strong> ?')
+			$ngBootbox.confirm(dltLabel+'<strong> '+item.name+'</strong>'+questionMarklbl)
 		    .then(function() {
-		    	blockUI.start("Saving...");
+		    	blockUI.start(saveLabel);
 		    	ProductsService.remove(item).$promise.then(function() {
 					products.splice(products.indexOf(item), 1);
 				}, function(error) {
@@ -105,7 +127,7 @@
 
 		function checkOrRestore(item, check){
 			item.checked = check;
-			blockUI.start("Saving...");
+			blockUI.start(saveLabel);
 			ProductsService.save(item).$promise.then(function(data) {
 			}, function(error) {
 				item.checked = !check;
@@ -139,7 +161,7 @@
 		}
 		
 		function alertError(error) {
-			$ngBootbox.alert("There was an error during this action. <br />Error code: " + error.status + ", " + error.data+"<br /><strong>Please retry</strong>");
+			$ngBootbox.alert(genericErrorlbl+" <br />"+genericErrorCodelbl+": " + error.status + ", " + error.data+"<br /><strong>"+genericErrorRetrylbl+"</strong>");
 		}
 	}
 })();
