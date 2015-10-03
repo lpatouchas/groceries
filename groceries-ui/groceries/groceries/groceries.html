@@ -2,13 +2,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 <div class="alert alert alert-info" role="alert" ng-click="showHideNav()">
 		<div>
+		<!-- span ng-click="changeLanguage('gr')">EL</span>
+		<span ng-click="changeLanguage('en')">EN</span-->
+		
 		<span ng-show="!showNav" class="glyphicon glyphicon glyphicon-triangle-bottom"></span>
 			<span ng-show="showNav" class="glyphicon glyphicon glyphicon-triangle-top"></span>
 		<span i18n="common.total"></span>: <price value="{{totalPrice()}}"></price>, <strong>{{( products | filter:{checked:false} ).length}}</strong> <span i18n="common.items"></span>.
 			
 		</div>
 </div>
-<div class="alert alert alert-warning animate-show" ng-show="currentSessionPrice > 0" ng-dblclick="resetCurrentSessionPrice()" ng-swipe-left="resetCurrentSessionPrice()"><span i18n="common.currentSessionPrice"></span>: <price value="{{currentSessionPrice}}"/>
+<div class="alert alert alert-warning animate-show" ng-show="currentSessionPrice > 0" ng-dblclick="resetCurrentSessionPrice()" ng-swipe-left="resetCurrentSessionPrice()"><span i18n="common.currentSessionPrice"></span>: <price value="{{currentSessionPrice}}"></price>
 </div>
 <div ng-show="showNav" class="animate-show">
 	<form name="newProductForm">
@@ -22,27 +25,37 @@
 					    <i class="gray-icon glyphicon glyphicon-euro form-control-feedback"></i> 
 			    </div>
 			    <div class="col-xs-2">
-					    <input type="number" class="form-control" ng-model="newProductQuantity" placeholder=""/> 
+					    <input type="number" step="1" class="form-control" ng-model="newProductQuantity" placeholder=""/> 
 					    <i class="gray-icon glyphicon glyphicon-plus-sign form-control-feedback"></i> 
 			    </div>
 	    </div>
-    	<button ng-disabled="newProductForm.$invalid" type="button" class="btn btn-block btn-default" ng-disabled="{{newProductPrice && newProductQuantity}}" ng-click="add()"><span i18n="common.add"/> <span class="glyphicon glyphicon-shopping-cart"></span></button>
+    	<button ng-disabled="newProductForm.$invalid" type="button" class="btn btn-block btn-default" ng-disabled="{{newProductPrice && newProductQuantity}}" ng-click="add()"><span i18n="common.add"></span> <span class="glyphicon glyphicon-shopping-cart"></span></button>
 	</form>
 </div>
 </nav>
 <div class="list-group">
-	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy""><span i18n="common.toBuy"/></div>
+	<div class="list-group-item active" data-toggle="collapse" data-target="#toBuy""><span i18n="common.toBuy"></span></div>
 	<div id="toBuy" class="collapse in">
 		<div class="list-group-item repeated-item" href="#" ng-repeat="item in products | filter:newProductName | filter:{checked:false}">
-		<product item="item" check="check(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
+		<product item="item" check="check(item)" edit="edit(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
 		</div>
 	</div>
 </div>
 <div class="list-group" ng-show="( products | filter:{checked:true} ).length > 0">
-	<div class="list-group-item active" data-toggle="collapse" data-target="#bought"><span i18n="common.bought"/></div>
+	<div class="list-group-item active" data-toggle="collapse" data-target="#bought"><span i18n="common.bought"></span></div>
 	<div id="bought" class="collapse in">
 		<div class="list-group-item repeated-item" ng-repeat="item in products | filter:newProductName | filter:{checked:true}">
-		<product item="item" remove="remove(item)" restore="restore(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
+		<product item="item" remove="remove(item)" edit="edit(item)" restore="restore(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
 		</div>
 	</div>
 </div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+<div class="alert animate-show alert-info" ng-show="showHistoryAlert">
+	<div class="row">
+		<div class="col-xs-10"><span i18n="common.checkedText"></span><strong>: {{checkedItem.name}}</strong></div>
+		<div class="col-xs-2" ng-click="restore(checkedItem)">
+		  		<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+		</div>
+	</div>
+</div>
+</nav>

@@ -12,7 +12,7 @@
     ,"quantity": 					"Quantity"
     ,"product": 					"Product"
     ,"delete":						"Delete"
-    ,"saving":						"Saving..."
+    ,"save":						"Saving..."
     ,"loading":						"Loading..."
     ,"addError":					"Please Add Product & Price"
     ,"genericError":				"There was an error."

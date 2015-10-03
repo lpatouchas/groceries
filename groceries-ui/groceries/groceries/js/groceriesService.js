@@ -15,7 +15,15 @@
 		var genericErrorRetrylbl;
 		var questionMarklbl;
 		
-		
+		var changeLanguage = function (lang){
+			locale.ready('common').then(function () {
+				if ('gr' == lang){
+					locale.setLocale('el-gr');
+				} else {
+					locale.setLocale('en-US');
+				}
+			});
+		}
 		
 		locale.ready('common').then(function () {
 			dltLabel = locale.getString('common.delete');
@@ -32,7 +40,10 @@
 		 * Public methods  
 		 */
 		var getProducts = function(){
-			blockUI.start(locale.getString('common.loading'));
+			locale.ready('common').then(function () {
+				blockUI.start(locale.getString('common.loading'));
+			});
+			
 			return ProductsService.query().$promise.then(function(data) {
 				return data;
 			}, function(error) {
@@ -92,8 +103,6 @@
 		} 
 		
 		var removeProduct = function(products, item) {
-			$ngBootbox.confirm(dltLabel+'<strong> '+item.name+'</strong>'+questionMarklbl)
-		    .then(function() {
 		    	blockUI.start(saveLabel);
 		    	ProductsService.remove(item).$promise.then(function() {
 					products.splice(products.indexOf(item), 1);
@@ -103,11 +112,6 @@
 					blockUI.stop();
 				});
 				return products;
-		    }, function() {
-		        console.log('Confirm dismissed!');
-		    });
-			
-			
 		}
 
 		var calculateTotalPrice = function(products) {
@@ -137,7 +141,7 @@
 			});
 		}
 		
-		function product(id, name, price, quantity, checked) {
+		var product = function (id, name, price, quantity, checked) {
 			return {
 				id: id,
 				name : name,
@@ -157,7 +161,9 @@
 			checkProduct : checkProduct,
 			uncheckProduct : uncheckProduct,
 			removeProduct : removeProduct,
-			calculateTotalPrice : calculateTotalPrice
+			calculateTotalPrice : calculateTotalPrice,
+			changeLanguage: changeLanguage,
+			product : product
 		}
 		
 		function alertError(error) {

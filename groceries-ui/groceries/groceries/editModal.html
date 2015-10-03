@@ -1,0 +1,29 @@
+
+			<div class="modal-header">
+				<h3 class="modal-title"><span i18n="common.editTitle"></span></h3>
+			</div>
+			<div class="modal-body" stop-event="touchend">
+				<div class="row">
+					<div class="col-xs-4"><span i18n="common.product"></span>:</div>
+					<div class="col-xs-8">
+						<input type="text" class="form-control" ng-model="editItem.name" required />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4"><span i18n="common.price"></span>:</div>
+					<div class="col-xs-8">
+						<input type="number" class="form-control" ng-model="editItem.price" required />
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-xs-4"><span i18n="common.quantity"></span>:</div>
+					<div class="col-xs-8">
+						<input type="number" step="1" class="form-control" ng-model="editItem.quantity"/>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" ng-click="closeModal()"><span i18n="common.close"></span></button>
+				<button type="button" class="btn btn-primary" ng-click="update(editItem)"><span i18n="common.edit"></span></button>
+			</div>

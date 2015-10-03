@@ -1,42 +1,12 @@
-<div class="row animate-repeat">
-	<div class="col-xs-8" ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}">
-			<div>
-				<a href="#"
-				ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
-				 editable-text="item.name" 
-							ng-show="item.id != editId" 
-							onshow="onshow(item)" 
-							onhide="onhide()" 
-							onaftersave="update(item)">{{item.name}}
-				</a>
-			</div>			
-			<div class="product-info">	
-				<span ng-show="item.id != editId"><span i18n="common.total"/>:</span>
-				<a href="#"
-				ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
-					editable-number="item.price" 
-					e-step="any" 
-					ng-show="item.id != editId" 
-					onshow="onshow(item)" 
-					onhide="onhide()" 
-					onaftersave="update(item)">
-					
-					<price value="{{item.price}}"/>
-					
-				</a>
-				
-				<span ng-show="item.id != editId">, <span i18n="common.quantity"/>:</span>
-				<a href="#"
-				ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}"
-					editable-number="item.quantity" 
-					e-step="any" 
-					ng-show="item.id != editId" 
-					onshow="onshow(item)" 
-					onhide="onhide()" 
-					onaftersave="update(item)">
-					<quantity value="{{item.quantity}}" />
-				</a>
-			</div>	
+<div class="row animate-repeat" >
+	<div class="col-xs-8"  ng-class="{'checked-product':item.checked, 'unchecked-product':!item.checked}">
+		<div ng-click="edit(item)">{{item.name}}</div>
+		<div class="product-info">
+			<span i18n="common.total" ></span>:
+			<price value="{{item.price}}" ></price>
+			, <span i18n="common.quantity"></span>:
+			<quantity value="{{item.quantity}}" ></quantity>
+		</div>
 	</div>
 	<div class="col-xs-4 small-padding" style="text-align: center;"  ng-if="!item.checked"  ng-show="item.id != editId">
 		<button type="button" class="btn btn-primary full-width" ng-click="check(item)" aria-label="Left Align">

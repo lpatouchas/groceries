@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('groceriesApp', [
-		'ngRoute', 'myApp.version', 'xeditable', 'ngResource', 'ngBootbox', //
+		'ngRoute', 'myApp.version','ui.bootstrap', 'ngResource', 'ngBootbox', //
 		'ngAnimate', 'blockUI', 'ngTouch', 'ngLocalize', 'ngLocalize.Config',
 		'ngLocalize.InstalledLanguages'
 	])
@@ -37,8 +37,7 @@
 		}
 	]);
 
-	angular.module('groceriesApp').run(function(editableOptions,locale) {
-			editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+	angular.module('groceriesApp').run(function(locale) {
 			locale.ready('common').then(function () {
 				locale.setLocale('el-GR');
 			});
