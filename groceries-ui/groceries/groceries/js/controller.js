@@ -45,15 +45,21 @@
 			modalInstance.close();
 		}
 
-		$scope.checkedItem;
+		$scope.tempItem;
 		
 		var timer;
 		
-		$scope.check = function(item) {
+		$scope.check = function(item, history) {
 			GroceriesService.checkProduct(item);
-			restoreInput();
 			calcCurrentSessionPrice(item, true);
-			$scope.checkedItem = item;
+			restoreInput();
+			if (!history){
+				handleTempItem(item);
+			}
+		}
+
+		var handleTempItem = function(item) {
+			$scope.tempItem = item;
 			$scope.showHistoryAlert = true;
 			$timeout.cancel(timer);
 	        timer = $timeout(function () { 
@@ -61,7 +67,7 @@
 	        	}, 
 	        	3000);  
 		}
-
+		
 		function calcCurrentSessionPrice(item, checked) {
 			var calcPrice = item.price * item.quantity;
 			// if currentSessionPrice is 0 and we uncheck an item, do not re-calclulate the currentSessionPrice
@@ -89,11 +95,13 @@
 			$scope.closeModal();
 		}
 
-		$scope.restore = function(item) {
+		$scope.restore = function(item,history) {
 			GroceriesService.uncheckProduct(item);
 			calcCurrentSessionPrice(item, false);
 			restoreInput();
-			$scope.showHistoryAlert = false;
+			if (!history){
+				handleTempItem(item);
+			}
 		}
 
 		$scope.totalPrice = function() {
@@ -104,6 +112,7 @@
 			delete $scope.newProductPrice;
 			delete $scope.newProductName;
 			delete $scope.newProductQuantity;
+			delete $scope.tempItem;
 		}
 
 		// show hide stuff

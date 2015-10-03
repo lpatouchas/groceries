@@ -49,11 +49,17 @@
 		</div>
 	</div>
 </div>
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom" ng-if="tempItem">
 <div class="alert animate-show alert-info" ng-show="showHistoryAlert">
-	<div class="row">
-		<div class="col-xs-10"><span i18n="common.checkedText"></span><strong>: {{checkedItem.name}}</strong></div>
-		<div class="col-xs-2" ng-click="restore(checkedItem)">
+	<div class="row" ng-if="tempItem.checked">
+		<div class="col-xs-10"><span i18n="common.checkedText"></span><strong>: {{tempItem.name}}</strong></div>
+		<div class="col-xs-2" ng-click="restore(tempItem,true)">
+		  		<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+		</div>
+	</div>
+	<div class="row" ng-if="!tempItem.checked">
+		<div class="col-xs-10"><span i18n="common.uncheckedText"></span><strong>: {{tempItem.name}}</strong></div>
+		<div class="col-xs-2" ng-click="check(tempItem,true)">
 		  		<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
 		</div>
 	</div>
