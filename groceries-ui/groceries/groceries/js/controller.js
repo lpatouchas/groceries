@@ -29,46 +29,32 @@
 			$scope.closeModal();
 		};
 
-		var modalInstance;
-
 		$scope.edit = function(item) {
 			$scope.editItem = item;
-
-			modalInstance = $modal.open({
-				templateUrl : 'groceries/editModal.html',
-				size : 'lg',
-				scope : $scope
-			});
+			showEditModal();
 		};
-
-		$scope.closeModal = function (){
-			modalInstance.close();
-		}
 
 		$scope.tempItem;
 		
-		var timer;
-		
 		$scope.check = function(item, history) {
 			GroceriesService.checkProduct(item);
-			calcCurrentSessionPrice(item, true);
 			restoreInput();
+			calcCurrentSessionPrice(item, true);
+			if (!history){
+				handleTempItem(item);
+			}
+		}
+		
+		$scope.restore = function(item,history) {
+			GroceriesService.uncheckProduct(item);
+			restoreInput();
+			calcCurrentSessionPrice(item, false);
 			if (!history){
 				handleTempItem(item);
 			}
 		}
 
-		var handleTempItem = function(item) {
-			$scope.tempItem = item;
-			$scope.showHistoryAlert = true;
-			$timeout.cancel(timer);
-	        timer = $timeout(function () { 
-	        	$scope.showHistoryAlert = false; 
-	        	}, 
-	        	3000);  
-		}
-		
-		function calcCurrentSessionPrice(item, checked) {
+		function calcCurrentSessionPrice(item, checked, history) {
 			var calcPrice = item.price * item.quantity;
 			// if currentSessionPrice is 0 and we uncheck an item, do not re-calclulate the currentSessionPrice
 			$scope.currentSessionPrice = checked ? $scope.currentSessionPrice + calcPrice
@@ -80,28 +66,16 @@
 		$scope.resetCurrentSessionPrice = function() {
 			$scope.currentSessionPrice = 0;
 		}
+		
 		$scope.tbDeleted;
 		$scope.remove = function(item) {
 			$scope.tbDeleted = item;
-			modalInstance = $modal.open({
-				templateUrl : 'groceries/deleteModal.html',
-				size : 'lg',
-				scope : $scope,
-			});
+			showRemoveModal();
 		}
 		
 		$scope.deleteItem = function(item) {
 			GroceriesService.removeProduct($scope.products, item);
 			$scope.closeModal();
-		}
-
-		$scope.restore = function(item,history) {
-			GroceriesService.uncheckProduct(item);
-			calcCurrentSessionPrice(item, false);
-			restoreInput();
-			if (!history){
-				handleTempItem(item);
-			}
 		}
 
 		$scope.totalPrice = function() {
@@ -115,7 +89,41 @@
 			delete $scope.tempItem;
 		}
 
-		// show hide stuff
+		/// modal stuff
+		var modalInstance;
+		
+		function showEditModal(){
+			modalInstance = $modal.open({
+				templateUrl : 'groceries/editModal.html',
+				size : 'lg',
+				scope : $scope
+			});
+		}
+		
+		function showRemoveModal(){
+			modalInstance = $modal.open({
+				templateUrl : 'groceries/deleteModal.html',
+				size : 'lg',
+				scope : $scope,
+			});
+		}
+		
+		$scope.closeModal = function (){
+			modalInstance.close();
+		}
+		///// Alert timer stuff
+		var timer;
+		$scope.showHistoryAlert = false;
+		var handleTempItem = function(item) {
+			$scope.tempItem = item;
+			$scope.showHistoryAlert = true;
+			$timeout.cancel(timer);
+	        timer = $timeout(function () { 
+	        	$scope.showHistoryAlert = false; 
+	        	}, 
+	        	3000);  
+		}
+		////// show hide stuff
 		$scope.showNav = false;
 		$scope.showHideNav = function() {
 			$scope.showNav = !$scope.showNav;
@@ -129,19 +137,5 @@
 			}
 		}
 
-		$scope.editId = -1;
-		$scope.onshow = function(item) {
-			$scope.editId = item.id;
-		}
-		$scope.onhide = function() {
-			$scope.editId = -1;
-		}
-		
-		$scope.showHistoryAlert = false;
-
-		$scope.closeHistoryAlert = function(index) {
-		    $scope.showHistoryAlert = false;
-		};
-		
 	}
 })();

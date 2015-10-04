@@ -1,23 +1,23 @@
 body {
-	font-size: 2em !important;
+	font-size: 1.7em !important;
 	color: #428bca;
 	margin: 0.1em !important;
 }
 
 .openNav {
-	padding-top: 6.46em;
+	padding-top: 6.8em;
 }
 
 .closeNav {
-	padding-top: 2.4em;
+	padding-top: 2.6em;
 }
 
 .openNavWithInfo {
-	padding-top: 8.8em;
+	padding-top: 9.2em;
 }
 
 .closeNavWithInfo {
-	padding-top: 4.7em;
+	padding-top:5em;
 }
 
 .navbar {
