@@ -121,7 +121,7 @@
 	        timer = $timeout(function () { 
 	        	$scope.showHistoryAlert = false; 
 	        	}, 
-	        	3000);  
+	        	5500);  
 		}
 		////// show hide stuff
 		$scope.showNav = false;
