@@ -40,13 +40,13 @@
 		 * Public methods  
 		 */
 		var getProducts = function(){
-			$("#updSpinner").show();
+			showSpinner();
 			return ProductsService.query().$promise.then(function(data) {
 				return data;
 			}, function(error) {
 				alertError(error);
 			})['finally'](function() {
-				$("#updSpinner").hide();
+				hideSpinner();
 			});
 		}
 
@@ -63,13 +63,13 @@
 				});
 
 				if (!found) {
-					$("#updSpinner").show();
+					showSpinner();
 					ProductsService.save(new product('',newProductName, newProductPrice,newProductQuantity, false)).$promise.then(function(data) {
 						products.push(data);
 					}, function(error) {
 						alertError(error);
 					})['finally'](function() {
-						$("#updSpinner").hide();
+						hideSpinner();
 					});
 					
 				}
@@ -81,12 +81,12 @@
 		};
 		
 		var updateProduct = function(item) {
-			$("#updSpinner").show();
+			showSpinner();
 			ProductsService.save(item).$promise.then(function(data) {
 			}, function(error) {
 				alertError(error);
 			})['finally'](function() {
-				$("#updSpinner").hide();
+				hideSpinner();
 			});
 		}
 			
@@ -100,13 +100,13 @@
 		} 
 		
 		var removeProduct = function(products, item) {
-			$("#updSpinner").show();
+			showSpinner();
 		    	ProductsService.remove(item).$promise.then(function() {
 					products.splice(products.indexOf(item), 1);
 				}, function(error) {
 					alertError(error);
 				})['finally'](function() {
-					$("#updSpinner").hide();
+					hideSpinner();
 				});
 				return products;
 		}
@@ -127,14 +127,14 @@
 		 */
 
 		function checkOrRestore(item, check){
-			$("#updSpinner").show();
+			showSpinner();
 			item.checked = check;
 			ProductsService.save(item).$promise.then(function(data) {
 			}, function(error) {
 				item.checked = !check;
 				alertError(error);
 			})['finally'](function() {
-				$("#updSpinner").hide();
+				hideSpinner();
 			});
 		}
 		
@@ -146,6 +146,15 @@
 				quantity: isNaN(quantity) ? 1 : quantity,
 				checked : checked
 			}
+		}
+		
+		var spinnerId = "#updSpinner";
+		function showSpinner(){
+			$(spinnerId).show();
+		}
+		
+		function hideSpinner(){
+			$(spinnerId).hide();
 		}
 
 		/*
