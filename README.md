@@ -13,7 +13,7 @@ Simple AngularJs Groceries App with rest communication with a simple java backen
 10. modals for delete and edit actions.
 11. constant (every 30 seconds) polling of the server for fetching background updates (form other user) of the list.
 
---Mostly implemented for fun and it is should not be used as a proper example of anything. It surtenly needs refactoring to comply with best practices :)--
+**Mostly implemented for fun and it is should not be used as a proper example of anything. It surtenly needs refactoring to comply with best practices :)**
  
 
 
