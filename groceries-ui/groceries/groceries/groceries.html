@@ -1,5 +1,6 @@
 <div ng-class="getTopPadding()"></div>
 <nav class="navbar navbar-default navbar-fixed-top">
+<div id="updSpinner" class="topcorner" style="display: none" ></div>
 <div class="alert alert alert-info" role="alert" ng-click="showHideNav()">
 		<div>
 		<!-- span ng-click="changeLanguage('gr')">EL</span>
@@ -25,7 +26,17 @@
 					    <i class="gray-icon glyphicon glyphicon-euro form-control-feedback"></i> 
 			    </div>
 			    <div class="col-xs-2">
-					    <input type="number" step="1" class="form-control" ng-model="newProductQuantity" placeholder=""/> 
+			    <select class="form-control" ng-model="newProductQuantity" id="sel1">
+				    <option>1</option>
+				    <option>2</option>
+				    <option>3</option>
+				    <option>5</option>
+				    <option>6</option>
+				    <option>7</option>
+				    <option>8</option>
+				    <option>9</option>
+				    <option>10</option>
+				  </select>
 					    <i class="gray-icon glyphicon glyphicon-plus-sign form-control-feedback"></i> 
 			    </div>
 	    </div>
@@ -36,7 +47,7 @@
 <div class="list-group">
 	<div class="list-group-item active" ng-click="isToBuyCollapsed = !isToBuyCollapsed"><span i18n="common.toBuy"></span></div>
 	<div id="toBuy" collapse="isToBuyCollapsed">
-		<div class="list-group-item repeated-item" href="#" ng-repeat="item in products | filter:newProductName | filter:{checked:false}">
+		<div class="list-group-item repeated-item" href="#" ng-repeat="item in products | filter:newProductName | filter:{checked:false} track by $index">
 		<product item="item" check="check(item)" edit="edit(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
 		</div>
 	</div>
@@ -44,7 +55,7 @@
 <div class="list-group" ng-show="( products | filter:{checked:true} ).length > 0">
 	<div class="list-group-item active" ng-click="isBoughtCollapsed = !isBoughtCollapsed"><span i18n="common.bought"></span></div>
 	<div id="bought" collapse="isBoughtCollapsed">
-		<div class="list-group-item repeated-item" ng-repeat="item in products | filter:newProductName | filter:{checked:true}">
+		<div class="list-group-item repeated-item" ng-repeat="item in products | filter:newProductName | filter:{checked:true} track by $index">
 		<product item="item" remove="remove(item)" edit="edit(item)" restore="restore(item)" onshow="onshow(item)" onhide="onhide()" update="update(item)" edit-id="editId" in-edit-mode="inEditMode"></product>
 		</div>
 	</div>
@@ -65,3 +76,4 @@
 	</div>
 </div>
 </nav>
+<span style="color:white;">timesCalled: {{timesCalled}}</span>

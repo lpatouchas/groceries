@@ -2,23 +2,50 @@
 	'use strict';
 
 	angular.module('groceriesApp').controller('GroceriesAppCtrl', [
-		'$scope', '$ngBootbox', '$modal','$timeout', 'GroceriesService', todoCtrl
+		'$scope', '$ngBootbox','$window', '$modal','$timeout', 'GroceriesService', todoCtrl
 	]);
 
-	function todoCtrl($scope, $ngBootbox, $modal,$timeout, GroceriesService) {
+	function todoCtrl($scope, $ngBootbox, $window, $modal,$timeout, GroceriesService) {
 
 		$scope.changeLanguage = function(lang) {
 			GroceriesService.changeLanguage(lang);
 		}
 
 		$scope.products = [];
-
-		$scope.currentSessionPrice = 0;
-
+		
 		GroceriesService.getProducts().then(function(data) {
 			$scope.products = data;
 		});
+		
+		$scope.currentSessionPrice = 0;
 
+		$scope.timesCalled = 0;
+		var pollinInterval = 30000;
+		var pollProductsTimeout;
+		
+		var pollProducts = function() {
+			
+			pollProductsTimeout = $timeout(function() {
+//				$scope.showPollingImg = true;
+				GroceriesService.getProducts().then(function(data) {
+					$scope.products = data;
+					$scope.timesCalled++;
+//					$scope.showPollingImg = false;
+					pollProducts();
+				})
+			}, pollinInterval);
+		}
+		
+		pollProducts();
+		
+		$window.onfocus = function() {
+			pollProducts();
+		}
+		
+		$(window).blur(function() {
+			$timeout.cancel(pollProductsTimeout);
+		});
+		
 		$scope.add = function() {
 			GroceriesService.addProduct($scope.newProductName, $scope.newProductPrice, $scope.newProductQuantity, $scope.products);
 			restoreInput();

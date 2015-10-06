@@ -29,6 +29,21 @@ body {
     /* the rest of your styling */
 }
 
+.topcorner{
+   position:absolute;
+   top: .6em;
+   right: .6em;
+   color: gray;
+   background-color: white;
+   opacity: .95;
+   z-index: 9999;
+   border-radius:  25px;
+   padding: .7em;
+   background-image: url("ajax-loader.gif");
+   background-position:center;
+   background-repeat: no-repeat;
+  }
+
 .navbar-fixed-top {
 	right: .1em !important;
     left: .1em !important;

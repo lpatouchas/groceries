@@ -1,10 +1,10 @@
 (function() {
 	'use strict';
 	angular.module('groceriesApp').factory('GroceriesService', [
-		'$ngBootbox','locale','blockUI','ProductsService', actionService
+		'$ngBootbox','locale','ProductsService', actionService
 	]);
 
-	function actionService($ngBootbox,locale, blockUI, ProductsService) {
+	function actionService($ngBootbox,locale, ProductsService) {
 		
 		var dltLabel;
 		var saveLabel;
@@ -40,16 +40,13 @@
 		 * Public methods  
 		 */
 		var getProducts = function(){
-			locale.ready('common').then(function () {
-				blockUI.start(locale.getString('common.loading'));
-			});
-			
+			$("#updSpinner").show();
 			return ProductsService.query().$promise.then(function(data) {
 				return data;
 			}, function(error) {
 				alertError(error);
 			})['finally'](function() {
-				blockUI.stop();
+				$("#updSpinner").hide();
 			});
 		}
 
@@ -66,13 +63,13 @@
 				});
 
 				if (!found) {
-					blockUI.start(saveLabel);
+					$("#updSpinner").show();
 					ProductsService.save(new product('',newProductName, newProductPrice,newProductQuantity, false)).$promise.then(function(data) {
 						products.push(data);
 					}, function(error) {
 						alertError(error);
 					})['finally'](function() {
-						blockUI.stop();
+						$("#updSpinner").hide();
 					});
 					
 				}
@@ -84,12 +81,12 @@
 		};
 		
 		var updateProduct = function(item) {
-			blockUI.start(saveLabel);
+			$("#updSpinner").show();
 			ProductsService.save(item).$promise.then(function(data) {
 			}, function(error) {
 				alertError(error);
 			})['finally'](function() {
-				blockUI.stop();
+				$("#updSpinner").hide();
 			});
 		}
 			
@@ -103,13 +100,13 @@
 		} 
 		
 		var removeProduct = function(products, item) {
-		    	blockUI.start(saveLabel);
+			$("#updSpinner").show();
 		    	ProductsService.remove(item).$promise.then(function() {
 					products.splice(products.indexOf(item), 1);
 				}, function(error) {
 					alertError(error);
 				})['finally'](function() {
-					blockUI.stop();
+					$("#updSpinner").hide();
 				});
 				return products;
 		}
@@ -130,14 +127,14 @@
 		 */
 
 		function checkOrRestore(item, check){
+			$("#updSpinner").show();
 			item.checked = check;
-			blockUI.start(saveLabel);
 			ProductsService.save(item).$promise.then(function(data) {
 			}, function(error) {
 				item.checked = !check;
 				alertError(error);
 			})['finally'](function() {
-				blockUI.stop();
+				$("#updSpinner").hide();
 			});
 		}
 		

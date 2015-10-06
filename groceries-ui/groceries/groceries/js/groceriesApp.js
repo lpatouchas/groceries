@@ -3,7 +3,7 @@
 
 	angular.module('groceriesApp', [
 		'ngRoute', 'myApp.version','ui.bootstrap', 'ngResource', 'ngBootbox', //
-		'ngAnimate', 'blockUI', 'ngTouch', 'ngLocalize', 'ngLocalize.Config',
+		'ngAnimate','ngTouch', 'ngLocalize', 'ngLocalize.Config',
 		'ngLocalize.InstalledLanguages'
 	])
 
