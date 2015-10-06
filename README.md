@@ -3,9 +3,9 @@
 Simple AngularJs Groceries App with rest communication with a simple java backend.
 
 ###Features:###
-1. Add / remove / delete / edit items (name, price, quantity) from your groceries list
+1. Add / remove / delete / check / uncheck / edit items (name, price, quantity) from your groceries list
 2. Rest communication with a simple backend
-3. Undo action feature
+3. Undo action (for check / uncheck actions only)
 4. Calculate the total amount that you will spend in the next visit to the groceries store (sum the unchecked items)
 5. Calculate the total amount of the current sessions checked items (do double check the total in the casier)
 6. Filter both checked and unchecked lists during the addition of a new product, so that you can restore the previously added one (if you chose to not restore it but you add the same name with different price or quantity, the old one will be updated and restored automaticaly).
