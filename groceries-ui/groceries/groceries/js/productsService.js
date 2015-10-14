@@ -3,7 +3,7 @@
 	angular.module('groceriesApp').factory('ProductsService', [
 		'$resource', function($resource) {
 
-			return $resource('http://83.212.110.141:8080/groceries-backend/rest/groceries', {}, {
+			return $resource('http://localhost:8080/groceries-backend/rest/groceries', {}, {
 				save : {
 					method : 'POST'
 				},
