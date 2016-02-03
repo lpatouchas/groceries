@@ -2,11 +2,11 @@
 	'use strict';
 
 	angular.module('groceriesApp').controller('GroceriesAppCtrl', [
-		'$scope', '$ngBootbox','$window', '$modal','$timeout', 'GroceriesService', todoCtrl
+		'$scope', '$rootScope', '$ngBootbox', "$aside", '$window', '$modal','$timeout', 'GroceriesService', todoCtrl
 	]);
 
-	function todoCtrl($scope, $ngBootbox, $window, $modal,$timeout, GroceriesService) {
-
+	function todoCtrl($scope, $rootScope, $ngBootbox,$aside, $window, $modal,$timeout, GroceriesService) {
+		
 		$scope.changeLanguage = function(lang) {
 			GroceriesService.changeLanguage(lang);
 		}
@@ -23,28 +23,28 @@
 		var pollinInterval = 30000;
 		var pollProductsTimeout;
 		
-		var pollProducts = function() {
-			
-			pollProductsTimeout = $timeout(function() {
-//				$scope.showPollingImg = true;
-				GroceriesService.getProducts().then(function(data) {
-					$scope.products = data;
-					$scope.timesCalled++;
-//					$scope.showPollingImg = false;
-					pollProducts();
-				})
-			}, pollinInterval);
-		}
-		
-		pollProducts();
-		
-		$window.onfocus = function() {
-			pollProducts();
-		}
-		
-		$(window).blur(function() {
-			$timeout.cancel(pollProductsTimeout);
-		});
+//		var pollProducts = function() {
+//			
+//			pollProductsTimeout = $timeout(function() {
+////				$scope.showPollingImg = true;
+//				GroceriesService.getProducts().then(function(data) {
+//					$scope.products = data;
+//					$scope.timesCalled++;
+////					$scope.showPollingImg = false;
+//					pollProducts();
+//				})
+//			}, pollinInterval);
+//		}
+//		
+//		pollProducts();
+//		
+//		$window.onfocus = function() {
+//			pollProducts();
+//		}
+//		
+//		$(window).blur(function() {
+//			$timeout.cancel(pollProductsTimeout);
+//		});
 		
 		$scope.add = function() {
 			GroceriesService.addProduct($scope.newProductName, $scope.newProductPrice, $scope.newProductQuantity, $scope.products);
@@ -75,7 +75,7 @@
 		$scope.restore = function(item,history) {
 			GroceriesService.uncheckProduct(item);
 			restoreInput();
-			calcCurrentSessionPrice(item, false);
+//			calcCurrentSessionPrice(item, false);
 			if (!history){
 				handleTempItem(item);
 			}
@@ -157,12 +157,39 @@
 		}
 
 		$scope.getTopPadding = function() {
-			if ($scope.currentSessionPrice == 0) {
+//			if ($scope.currentSessionPrice == 0) {
 				return $scope.showNav ? 'openNav' : 'closeNav';
-			} else {
-				return $scope.showNav ? 'openNavWithInfo' : 'closeNavWithInfo';
-			}
+//			} else {
+//				return $scope.showNav ? 'openNavWithInfo' : 'closeNavWithInfo';
+//			}
+			
 		}
-
+		
+		$scope.openAside = function(position) {
+            $aside.open({
+              templateUrl: 'groceries/asideMenu.html',
+              placement: position,
+              backdrop: true,
+              scope: $scope,
+              controller: function($scope, $modalInstance) {
+            	
+            	$scope.addd = $scope.add;
+            	  
+                $scope.ok = function(e) {
+                  $scope.updateCurrentSessionPrice($scope.currentSessionPrice);
+                  $modalInstance.close();
+                  e.stopPropagation();
+                };
+               /* $scope.cancel = function(e) {
+                  $modalInstance.dismiss();
+                  e.stopPropagation();
+                };*/
+              }
+            })
+          }
+		
+		$scope.updateCurrentSessionPrice = function(price){
+			$scope.currentSessionPrice = price;
+		}
 	}
 })();

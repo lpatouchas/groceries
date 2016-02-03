@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('groceriesApp', [
-		'ngRoute', 'myApp.version','ui.bootstrap', 'ngResource', 'ngBootbox', //
+		'ngRoute', 'myApp.version','ui.bootstrap', 'ngResource', 'ngBootbox','ngAside', //
 		'ngAnimate','ngTouch', 'ngLocalize', 'ngLocalize.Config',
 		'ngLocalize.InstalledLanguages'
 	])
