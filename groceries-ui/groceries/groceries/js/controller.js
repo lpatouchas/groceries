@@ -173,8 +173,6 @@
               scope: $scope,
               controller: function($scope, $modalInstance) {
             	
-            	$scope.addd = $scope.add;
-            	  
                 $scope.ok = function(e) {
                   $scope.updateCurrentSessionPrice($scope.currentSessionPrice);
                   $modalInstance.close();
